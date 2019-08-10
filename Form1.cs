@@ -23,7 +23,7 @@ namespace iwm_DirOnlyCopy
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			Text = @"フォルダ構成をコピー iwm20190809";
+			Text = @"フォルダ構成をコピー iwm20190810";
 
 			for (int _i1 = DirLevel[0]; _i1 <= DirLevel[1]; _i1++)
 			{
@@ -204,7 +204,7 @@ namespace iwm_DirOnlyCopy
 		private void SubBtnExecCtrl()
 		{
 			LblResult.Text = "";
-			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text != "" ? true : false;
+			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0 ? true : false;
 		}
 
 		private void SubBtnExecCount(
