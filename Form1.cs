@@ -14,6 +14,8 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
+		private const string VERSION = @"フォルダ構成をコピー iwm20191030";
+
 		private readonly int[] DirLevel = { 0, 260 };
 
 		public Form1()
@@ -23,7 +25,7 @@ namespace iwm_DirOnlyCopy
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			Text = @"フォルダ構成をコピー iwm20190810";
+			Text = VERSION;
 
 			for (int _i1 = DirLevel[0]; _i1 <= DirLevel[1]; _i1++)
 			{
