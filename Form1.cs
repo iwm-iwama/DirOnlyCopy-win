@@ -14,7 +14,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = @"フォルダ構成をコピー iwm20191030";
+		private const string VERSION = @"フォルダ構成をコピー iwm20200212";
 
 		private readonly int[] DirLevel = { 0, 260 };
 
@@ -156,10 +156,6 @@ namespace iwm_DirOnlyCopy
 			SubBtnExecCount("該当");
 			BtnTest.Enabled = true;
 		}
-		private void BtnTest_MouseEnter(object sender, EventArgs e)
-		{
-			ToolTip1.SetToolTip(BtnTest, "作成するDir数を表示／作成はしない");
-		}
 
 		private void BtnExec_Click(object sender, EventArgs e)
 		{
@@ -193,11 +189,6 @@ namespace iwm_DirOnlyCopy
 				}
 			}
 			BtnExec.Enabled = true;
-		}
-
-		private void BtnExec_MouseEnter(object sender, EventArgs e)
-		{
-			ToolTip1.SetToolTip(BtnExec, "実際にDir作成");
 		}
 
 		//------------------
