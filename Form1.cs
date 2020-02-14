@@ -14,7 +14,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = @"フォルダ構成をコピー iwm20200212";
+		private const string VERSION = "フォルダ構成をコピー iwm20200214";
 
 		private readonly int[] DirLevel = { 0, 260 };
 
