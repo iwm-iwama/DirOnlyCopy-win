@@ -197,7 +197,7 @@ namespace iwm_DirOnlyCopy
 		private void SubBtnExecCtrl()
 		{
 			LblResult.Text = "";
-			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0 ? true : false;
+			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
 		}
 
 		private void SubBtnExecCount(
