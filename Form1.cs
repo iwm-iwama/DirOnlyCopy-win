@@ -14,7 +14,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20200214";
+		private const string VERSION = "フォルダ構成をコピー iwm20200730";
 
 		private readonly int[] DirLevel = { 0, 260 };
 
@@ -184,7 +184,6 @@ namespace iwm_DirOnlyCopy
 				string s = copyPath + _s1;
 				if (!Directory.Exists(s))
 				{
-					///Console.WriteLine(s);
 					_ = Directory.CreateDirectory(s);
 				}
 			}
@@ -267,11 +266,9 @@ namespace iwm_DirOnlyCopy
 					Application.DoEvents();// 割込を手抜き実装
 
 					int cnt = RtnSerchCharCnt(DI.FullName, '\\');
-					///Console.WriteLine("[{0:0}]{1}", cnt,DI.FullName);
 
 					if (cnt <= GblSubDirListLevelMax)
 					{
-						///Console.WriteLine(DI.FullName);
 						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
 						SubDirList(DI.FullName);
 					}

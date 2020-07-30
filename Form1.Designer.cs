@@ -36,12 +36,10 @@
 			this.TbInput = new System.Windows.Forms.TextBox();
 			this.CmsInput = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CmsInput_クリア = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsInput_L1 = new System.Windows.Forms.ToolStripSeparator();
 			this.CmsInput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.TbOutput = new System.Windows.Forms.TextBox();
 			this.CmsOutput = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CmsOutput_クリア = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsOutput_L1 = new System.Windows.Forms.ToolStripSeparator();
 			this.CmsOutput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.Lbl1 = new System.Windows.Forms.Label();
 			this.Lbl3 = new System.Windows.Forms.Label();
@@ -50,7 +48,6 @@
 			this.CbDepth = new System.Windows.Forms.ComboBox();
 			this.CmsDepth = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CmsDepth_上へ = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsDepth_L1 = new System.Windows.Forms.ToolStripSeparator();
 			this.CmsDepth_下へ = new System.Windows.Forms.ToolStripMenuItem();
 			this.BtnTest = new System.Windows.Forms.Button();
 			this.LblResult = new System.Windows.Forms.Label();
@@ -115,27 +112,21 @@
 			// 
 			this.CmsInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CmsInput_クリア,
-            this.CmsInput_L1,
             this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(116, 54);
+			this.CmsInput.Size = new System.Drawing.Size(116, 48);
 			// 
 			// CmsInput_クリア
 			// 
 			this.CmsInput_クリア.Name = "CmsInput_クリア";
-			this.CmsInput_クリア.Size = new System.Drawing.Size(115, 22);
+			this.CmsInput_クリア.Size = new System.Drawing.Size(180, 22);
 			this.CmsInput_クリア.Text = "クリア";
 			this.CmsInput_クリア.Click += new System.EventHandler(this.CmsInput_クリア_Click);
-			// 
-			// CmsInput_L1
-			// 
-			this.CmsInput_L1.Name = "CmsInput_L1";
-			this.CmsInput_L1.Size = new System.Drawing.Size(112, 6);
 			// 
 			// CmsInput_貼り付け
 			// 
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -164,10 +155,9 @@
 			// 
 			this.CmsOutput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CmsOutput_クリア,
-            this.CmsOutput_L1,
             this.CmsOutput_貼り付け});
 			this.CmsOutput.Name = "contextMenuStrip1";
-			this.CmsOutput.Size = new System.Drawing.Size(116, 54);
+			this.CmsOutput.Size = new System.Drawing.Size(116, 48);
 			// 
 			// CmsOutput_クリア
 			// 
@@ -175,11 +165,6 @@
 			this.CmsOutput_クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsOutput_クリア.Text = "クリア";
 			this.CmsOutput_クリア.Click += new System.EventHandler(this.CmsOutput_クリア_Click);
-			// 
-			// CmsOutput_L1
-			// 
-			this.CmsOutput_L1.Name = "CmsOutput_L1";
-			this.CmsOutput_L1.Size = new System.Drawing.Size(112, 6);
 			// 
 			// CmsOutput_貼り付け
 			// 
@@ -264,10 +249,9 @@
 			// 
 			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CmsDepth_上へ,
-            this.CmsDepth_L1,
             this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
-			this.CmsDepth.Size = new System.Drawing.Size(68, 54);
+			this.CmsDepth.Size = new System.Drawing.Size(181, 70);
 			// 
 			// CmsDepth_上へ
 			// 
@@ -275,11 +259,6 @@
 			this.CmsDepth_上へ.Name = "CmsDepth_上へ";
 			this.CmsDepth_上へ.Size = new System.Drawing.Size(67, 22);
 			this.CmsDepth_上へ.Click += new System.EventHandler(this.CmsDepth_上へ_Click);
-			// 
-			// CmsDepth_L1
-			// 
-			this.CmsDepth_L1.Name = "CmsDepth_L1";
-			this.CmsDepth_L1.Size = new System.Drawing.Size(64, 6);
 			// 
 			// CmsDepth_下へ
 			// 
@@ -380,16 +359,13 @@
 		private System.Windows.Forms.ToolTip ToolTip1;
 		private System.Windows.Forms.ContextMenuStrip CmsInput;
 		private System.Windows.Forms.ToolStripMenuItem CmsInput_クリア;
-		private System.Windows.Forms.ToolStripSeparator CmsInput_L1;
 		private System.Windows.Forms.ToolStripMenuItem CmsInput_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsOutput;
 		private System.Windows.Forms.ToolStripMenuItem CmsOutput_クリア;
-		private System.Windows.Forms.ToolStripSeparator CmsOutput_L1;
 		private System.Windows.Forms.ToolStripMenuItem CmsOutput_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsDepth;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
-		private System.Windows.Forms.ToolStripSeparator CmsDepth_L1;
 	}
 }
 
