@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 //using System.ComponentModel;
 //using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text;
+using System.Text.RegularExpressions;
+//using System.Text.RegularExpressions;
 //using System.Linq;
 //using System.Text;
 //using System.Threading;
@@ -14,9 +18,9 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20200730";
+		private const string VERSION = "フォルダ構成をコピー iwm20200924";
 
-		private readonly int[] DirLevel = { 0, 260 };
+		private readonly int[] DirLevel = { 1, 260 };
 
 		public Form1()
 		{
@@ -36,10 +40,27 @@ namespace iwm_DirOnlyCopy
 			TbInput.Text = "";
 			TbOutput.Text = "";
 			LblResult.Text = "";
+
 			BtnExec.Enabled = false;
 
 			CmsDepth_上へ.Text = DirLevel[0].ToString();
 			CmsDepth_下へ.Text = DirLevel[1].ToString();
+		}
+
+		private readonly string TempFile = Path.Combine(Path.GetTempPath(), Path.GetFileName(Environment.GetCommandLineArgs()[0]) + ".log");
+		private Process P = null;
+
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+		{
+			try
+			{
+				P.Kill();
+			}
+			catch
+			{
+			}
+
+			File.Delete(TempFile);
 		}
 
 		private Point MousePoint;
@@ -151,9 +172,34 @@ namespace iwm_DirOnlyCopy
 
 		private void BtnTest_Click(object sender, EventArgs e)
 		{
+			try
+			{
+				P.Kill();
+			}
+			catch
+			{
+			}
+
 			TbInput.Text = RtnDirNormalization(TbInput.Text);
+
 			BtnTest.Enabled = false;
+
 			SubBtnExecCount("該当");
+
+			if (GblSubDirList.Count > 0)
+			{
+				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
+				{
+					foreach (string _s1 in GblSubDirList)
+					{
+						sw.WriteLine(_s1);
+					}
+				}
+
+				// リスト表示
+				P = Process.Start("notepad.exe", TempFile);
+			}
+
 			BtnTest.Enabled = true;
 		}
 
@@ -170,12 +216,6 @@ namespace iwm_DirOnlyCopy
 			string basePath = Path.GetFileName(TbInput.Text.TrimEnd('\\'));
 			string copyPath = TbOutput.Text + basePath + @"\";
 
-			// コピー先に 同じDir名 はないか？
-			if (Directory.Exists(copyPath))
-			{
-				copyPath = copyPath.TrimEnd('\\') + @"～コピー\";
-			}
-
 			// Mkdir
 			_ = Directory.CreateDirectory(copyPath);
 
@@ -187,6 +227,7 @@ namespace iwm_DirOnlyCopy
 					_ = Directory.CreateDirectory(s);
 				}
 			}
+
 			BtnExec.Enabled = true;
 		}
 
@@ -210,7 +251,7 @@ namespace iwm_DirOnlyCopy
 			SubDirListInit();
 			SubDirList(TbInput.Text);
 
-			LblResult.Text = GblSubDirList.Count + (Directory.Exists(TbInput.Text) ? 1 : 0) + " フォルダ" + s;
+			LblResult.Text = GblSubDirList.Count + " フォルダ" + s;
 
 			Cursor = Cursors.Default;
 		}
@@ -265,14 +306,15 @@ namespace iwm_DirOnlyCopy
 				{
 					Application.DoEvents();// 割込を手抜き実装
 
-					int cnt = RtnSerchCharCnt(DI.FullName, '\\');
-
-					if (cnt <= GblSubDirListLevelMax)
+					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
 					{
 						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
 						SubDirList(DI.FullName);
 					}
 				}
+
+				// ものすごく遅い
+				// GblSubDirList.Sort();
 			}
 			catch
 			{

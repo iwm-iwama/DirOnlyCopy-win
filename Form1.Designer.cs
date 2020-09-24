@@ -67,7 +67,7 @@
 			this.BtnInput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnInput.Name = "BtnInput";
 			this.BtnInput.Size = new System.Drawing.Size(39, 20);
-			this.BtnInput.TabIndex = 0;
+			this.BtnInput.TabIndex = 1;
 			this.BtnInput.Text = "入力";
 			this.BtnInput.UseVisualStyleBackColor = false;
 			this.BtnInput.Click += new System.EventHandler(this.BtnInput_Click);
@@ -82,7 +82,7 @@
 			this.BtnOutput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnOutput.Name = "BtnOutput";
 			this.BtnOutput.Size = new System.Drawing.Size(39, 20);
-			this.BtnOutput.TabIndex = 5;
+			this.BtnOutput.TabIndex = 4;
 			this.BtnOutput.Text = "出力";
 			this.BtnOutput.UseVisualStyleBackColor = false;
 			this.BtnOutput.Click += new System.EventHandler(this.BtnOutput_Click);
@@ -101,8 +101,7 @@
 			this.TbInput.Margin = new System.Windows.Forms.Padding(0);
 			this.TbInput.Name = "TbInput";
 			this.TbInput.Size = new System.Drawing.Size(245, 20);
-			this.TbInput.TabIndex = 1;
-			this.TbInput.TabStop = false;
+			this.TbInput.TabIndex = 2;
 			this.TbInput.WordWrap = false;
 			this.TbInput.TextChanged += new System.EventHandler(this.TbInput_TextChanged);
 			this.TbInput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbInput_DragEnter);
@@ -119,14 +118,14 @@
 			// CmsInput_クリア
 			// 
 			this.CmsInput_クリア.Name = "CmsInput_クリア";
-			this.CmsInput_クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_クリア.Text = "クリア";
 			this.CmsInput_クリア.Click += new System.EventHandler(this.CmsInput_クリア_Click);
 			// 
 			// CmsInput_貼り付け
 			// 
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -144,8 +143,7 @@
 			this.TbOutput.Margin = new System.Windows.Forms.Padding(0);
 			this.TbOutput.Name = "TbOutput";
 			this.TbOutput.Size = new System.Drawing.Size(245, 20);
-			this.TbOutput.TabIndex = 6;
-			this.TbOutput.TabStop = false;
+			this.TbOutput.TabIndex = 5;
 			this.TbOutput.WordWrap = false;
 			this.TbOutput.TextChanged += new System.EventHandler(this.TbOutput_TextChanged);
 			this.TbOutput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragEnter);
@@ -181,9 +179,9 @@
 			this.Lbl1.Location = new System.Drawing.Point(15, 43);
 			this.Lbl1.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl1.Name = "Lbl1";
-			this.Lbl1.Size = new System.Drawing.Size(96, 13);
-			this.Lbl1.TabIndex = 2;
-			this.Lbl1.Text = "を含む、フォルダ";
+			this.Lbl1.Size = new System.Drawing.Size(91, 13);
+			this.Lbl1.TabIndex = 0;
+			this.Lbl1.Text = "以下のフォルダ";
 			// 
 			// Lbl3
 			// 
@@ -194,7 +192,7 @@
 			this.Lbl3.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl3.Name = "Lbl3";
 			this.Lbl3.Size = new System.Drawing.Size(88, 13);
-			this.Lbl3.TabIndex = 7;
+			this.Lbl3.TabIndex = 0;
 			this.Lbl3.Text = "に作成します。";
 			// 
 			// BtnExec
@@ -208,7 +206,7 @@
 			this.BtnExec.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnExec.Name = "BtnExec";
 			this.BtnExec.Size = new System.Drawing.Size(60, 22);
-			this.BtnExec.TabIndex = 10;
+			this.BtnExec.TabIndex = 7;
 			this.BtnExec.Text = "実行";
 			this.ToolTip1.SetToolTip(this.BtnExec, "実際にDir作成");
 			this.BtnExec.UseVisualStyleBackColor = false;
@@ -219,11 +217,11 @@
 			this.Lbl2.AutoSize = true;
 			this.Lbl2.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.Lbl2.ForeColor = System.Drawing.Color.White;
-			this.Lbl2.Location = new System.Drawing.Point(161, 43);
+			this.Lbl2.Location = new System.Drawing.Point(154, 43);
 			this.Lbl2.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl2.Name = "Lbl2";
 			this.Lbl2.Size = new System.Drawing.Size(52, 13);
-			this.Lbl2.TabIndex = 4;
+			this.Lbl2.TabIndex = 0;
 			this.Lbl2.Text = "階層を、";
 			// 
 			// CbDepth
@@ -239,7 +237,7 @@
 			this.CbDepth.FormattingEnabled = true;
 			this.CbDepth.IntegralHeight = false;
 			this.CbDepth.ItemHeight = 12;
-			this.CbDepth.Location = new System.Drawing.Point(112, 39);
+			this.CbDepth.Location = new System.Drawing.Point(107, 39);
 			this.CbDepth.Margin = new System.Windows.Forms.Padding(0);
 			this.CbDepth.Name = "CbDepth";
 			this.CbDepth.Size = new System.Drawing.Size(45, 20);
@@ -251,7 +249,7 @@
             this.CmsDepth_上へ,
             this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
-			this.CmsDepth.Size = new System.Drawing.Size(181, 70);
+			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
 			// 
 			// CmsDepth_上へ
 			// 
@@ -278,7 +276,7 @@
 			this.BtnTest.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnTest.Name = "BtnTest";
 			this.BtnTest.Size = new System.Drawing.Size(60, 22);
-			this.BtnTest.TabIndex = 9;
+			this.BtnTest.TabIndex = 6;
 			this.BtnTest.Text = "テスト";
 			this.ToolTip1.SetToolTip(this.BtnTest, "作成するDir数を表示／作成はしない");
 			this.BtnTest.UseVisualStyleBackColor = false;
@@ -294,7 +292,7 @@
 			this.LblResult.Margin = new System.Windows.Forms.Padding(0);
 			this.LblResult.Name = "LblResult";
 			this.LblResult.Size = new System.Drawing.Size(16, 13);
-			this.LblResult.TabIndex = 8;
+			this.LblResult.TabIndex = 0;
 			this.LblResult.Text = "...";
 			// 
 			// ToolTip1
@@ -321,7 +319,7 @@
 			this.Controls.Add(this.BtnOutput);
 			this.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(800, 190);
+			this.MaximumSize = new System.Drawing.Size(640, 190);
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(320, 190);
 			this.Name = "Form1";
@@ -330,6 +328,7 @@
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "ダミータイトル";
 			this.TopMost = true;
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
