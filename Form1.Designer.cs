@@ -29,8 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.FolderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-			this.FolderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
 			this.BtnInput = new System.Windows.Forms.Button();
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.TbInput = new System.Windows.Forms.TextBox();
@@ -341,9 +339,6 @@
 		}
 
 		#endregion
-
-		private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog1;
-		private System.Windows.Forms.FolderBrowserDialog FolderBrowserDialog2;
 		private System.Windows.Forms.Button BtnInput;
 		private System.Windows.Forms.Button BtnOutput;
 		private System.Windows.Forms.TextBox TbInput;
