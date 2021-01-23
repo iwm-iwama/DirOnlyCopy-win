@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.BtnInput = new System.Windows.Forms.Button();
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.TbInput = new System.Windows.Forms.TextBox();
@@ -111,19 +112,21 @@
             this.CmsInput_クリア,
             this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(116, 48);
+			this.CmsInput.Size = new System.Drawing.Size(181, 70);
 			// 
 			// CmsInput_クリア
 			// 
+			this.CmsInput_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_クリア.Image")));
 			this.CmsInput_クリア.Name = "CmsInput_クリア";
-			this.CmsInput_クリア.Size = new System.Drawing.Size(115, 22);
+			this.CmsInput_クリア.Size = new System.Drawing.Size(180, 22);
 			this.CmsInput_クリア.Text = "クリア";
 			this.CmsInput_クリア.Click += new System.EventHandler(this.CmsInput_クリア_Click);
 			// 
 			// CmsInput_貼り付け
 			// 
+			this.CmsInput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_貼り付け.Image")));
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -157,6 +160,7 @@
 			// 
 			// CmsOutput_クリア
 			// 
+			this.CmsOutput_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_クリア.Image")));
 			this.CmsOutput_クリア.Name = "CmsOutput_クリア";
 			this.CmsOutput_クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsOutput_クリア.Text = "クリア";
@@ -164,6 +168,7 @@
 			// 
 			// CmsOutput_貼り付け
 			// 
+			this.CmsOutput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_貼り付け.Image")));
 			this.CmsOutput_貼り付け.Name = "CmsOutput_貼り付け";
 			this.CmsOutput_貼り付け.Size = new System.Drawing.Size(115, 22);
 			this.CmsOutput_貼り付け.Text = "貼り付け";
@@ -252,6 +257,7 @@
 			// CmsDepth_上へ
 			// 
 			this.CmsDepth_上へ.ForeColor = System.Drawing.Color.Black;
+			this.CmsDepth_上へ.Image = ((System.Drawing.Image)(resources.GetObject("CmsDepth_上へ.Image")));
 			this.CmsDepth_上へ.Name = "CmsDepth_上へ";
 			this.CmsDepth_上へ.Size = new System.Drawing.Size(67, 22);
 			this.CmsDepth_上へ.Click += new System.EventHandler(this.CmsDepth_上へ_Click);
@@ -259,6 +265,7 @@
 			// CmsDepth_下へ
 			// 
 			this.CmsDepth_下へ.ForeColor = System.Drawing.Color.Black;
+			this.CmsDepth_下へ.Image = ((System.Drawing.Image)(resources.GetObject("CmsDepth_下へ.Image")));
 			this.CmsDepth_下へ.Name = "CmsDepth_下へ";
 			this.CmsDepth_下へ.Size = new System.Drawing.Size(67, 22);
 			this.CmsDepth_下へ.Click += new System.EventHandler(this.CmsDepth_下へ_Click);
