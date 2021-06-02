@@ -10,7 +10,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210529";
+		private const string VERSION = "フォルダ構成をコピー iwm20210601";
 
 		private readonly int[] DirLevel = { 1, 260 };
 
@@ -124,6 +124,11 @@ namespace iwm_DirOnlyCopy
 
 		private void TbInput_DragEnter(object sender, DragEventArgs e)
 		{
+			e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.All : DragDropEffects.None;
+		}
+
+		private void TbInput_DragDrop(object sender, DragEventArgs e)
+		{
 			SubTextBoxDragEnter(e, TbInput);
 		}
 
@@ -167,6 +172,11 @@ namespace iwm_DirOnlyCopy
 		}
 
 		private void TbOutput_DragEnter(object sender, DragEventArgs e)
+		{
+			e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.All : DragDropEffects.None;
+		}
+
+		private void TbOutput_DragDrop(object sender, DragEventArgs e)
 		{
 			SubTextBoxDragEnter(e, TbOutput);
 		}
@@ -357,20 +367,19 @@ namespace iwm_DirOnlyCopy
 			TextBox tb
 		)
 		{
-			using (FolderBrowserDialog fbd = new FolderBrowserDialog
+			FolderBrowserDialog fbd = new FolderBrowserDialog()
 			{
 				Description = "フォルダを指定してください。",
-				RootFolder = Environment.SpecialFolder.Desktop,
+				RootFolder = Environment.SpecialFolder.MyComputer,
 				SelectedPath = tb.Text,
 				ShowNewFolderButton = true
-			})
+			};
+
+			if (fbd.ShowDialog(this) == DialogResult.OK)
 			{
-				if (fbd.ShowDialog(this) == DialogResult.OK)
-				{
-					tb.Text = fbd.SelectedPath;
-					_ = tb.Focus();
-					tb.Select(0, 0);
-				}
+				tb.Text = fbd.SelectedPath;
+				_ = tb.Focus();
+				tb.Select(0, 0);
 			}
 		}
 

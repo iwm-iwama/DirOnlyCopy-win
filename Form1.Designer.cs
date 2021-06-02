@@ -103,6 +103,7 @@
 			this.TbInput.TabIndex = 2;
 			this.TbInput.WordWrap = false;
 			this.TbInput.TextChanged += new System.EventHandler(this.TbInput_TextChanged);
+			this.TbInput.DragDrop += new System.Windows.Forms.DragEventHandler(this.TbInput_DragDrop);
 			this.TbInput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbInput_DragEnter);
 			this.TbInput.MouseEnter += new System.EventHandler(this.TbInput_MouseEnter);
 			// 
@@ -112,13 +113,13 @@
             this.CmsInput_クリア,
             this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(181, 70);
+			this.CmsInput.Size = new System.Drawing.Size(116, 48);
 			// 
 			// CmsInput_クリア
 			// 
 			this.CmsInput_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_クリア.Image")));
 			this.CmsInput_クリア.Name = "CmsInput_クリア";
-			this.CmsInput_クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_クリア.Text = "クリア";
 			this.CmsInput_クリア.Click += new System.EventHandler(this.CmsInput_クリア_Click);
 			// 
@@ -126,7 +127,7 @@
 			// 
 			this.CmsInput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_貼り付け.Image")));
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -147,6 +148,7 @@
 			this.TbOutput.TabIndex = 5;
 			this.TbOutput.WordWrap = false;
 			this.TbOutput.TextChanged += new System.EventHandler(this.TbOutput_TextChanged);
+			this.TbOutput.DragDrop += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragDrop);
 			this.TbOutput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragEnter);
 			this.TbOutput.MouseEnter += new System.EventHandler(this.TbOutput_MouseEnter);
 			// 
