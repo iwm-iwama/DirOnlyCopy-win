@@ -10,7 +10,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210601";
+		private const string VERSION = "フォルダ構成をコピー iwm20210613";
 
 		private readonly int[] DirLevel = { 1, 260 };
 
@@ -137,7 +137,7 @@ namespace iwm_DirOnlyCopy
 			ToolTip1.SetToolTip(TbInput, TbInput.Text);
 		}
 
-		private void CmsInput_クリア_Click(object sender, EventArgs e)
+		private void CmsInput_全クリア_Click(object sender, EventArgs e)
 		{
 			TbInput.Text = "";
 			_ = TbInput.Focus();
@@ -186,7 +186,7 @@ namespace iwm_DirOnlyCopy
 			ToolTip1.SetToolTip(TbOutput, TbOutput.Text);
 		}
 
-		private void CmsOutput_クリア_Click(object sender, EventArgs e)
+		private void CmsOutput_全クリア_Click(object sender, EventArgs e)
 		{
 			TbOutput.Text = "";
 			_ = TbOutput.Focus();

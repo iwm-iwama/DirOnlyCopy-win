@@ -34,11 +34,11 @@
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.TbInput = new System.Windows.Forms.TextBox();
 			this.CmsInput = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsInput_クリア = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsInput_全クリア = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsInput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.TbOutput = new System.Windows.Forms.TextBox();
 			this.CmsOutput = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsOutput_クリア = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsOutput_全クリア = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsOutput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.Lbl1 = new System.Windows.Forms.Label();
 			this.Lbl3 = new System.Windows.Forms.Label();
@@ -110,24 +110,24 @@
 			// CmsInput
 			// 
 			this.CmsInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsInput_クリア,
+            this.CmsInput_全クリア,
             this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(116, 48);
+			this.CmsInput.Size = new System.Drawing.Size(181, 70);
 			// 
-			// CmsInput_クリア
+			// CmsInput_全クリア
 			// 
-			this.CmsInput_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_クリア.Image")));
-			this.CmsInput_クリア.Name = "CmsInput_クリア";
-			this.CmsInput_クリア.Size = new System.Drawing.Size(115, 22);
-			this.CmsInput_クリア.Text = "クリア";
-			this.CmsInput_クリア.Click += new System.EventHandler(this.CmsInput_クリア_Click);
+			this.CmsInput_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_全クリア.Image")));
+			this.CmsInput_全クリア.Name = "CmsInput_全クリア";
+			this.CmsInput_全クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_全クリア.Text = "全クリア";
+			this.CmsInput_全クリア.Click += new System.EventHandler(this.CmsInput_全クリア_Click);
 			// 
 			// CmsInput_貼り付け
 			// 
 			this.CmsInput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_貼り付け.Image")));
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -155,18 +155,18 @@
 			// CmsOutput
 			// 
 			this.CmsOutput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsOutput_クリア,
+            this.CmsOutput_全クリア,
             this.CmsOutput_貼り付け});
 			this.CmsOutput.Name = "contextMenuStrip1";
 			this.CmsOutput.Size = new System.Drawing.Size(116, 48);
 			// 
-			// CmsOutput_クリア
+			// CmsOutput_全クリア
 			// 
-			this.CmsOutput_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_クリア.Image")));
-			this.CmsOutput_クリア.Name = "CmsOutput_クリア";
-			this.CmsOutput_クリア.Size = new System.Drawing.Size(115, 22);
-			this.CmsOutput_クリア.Text = "クリア";
-			this.CmsOutput_クリア.Click += new System.EventHandler(this.CmsOutput_クリア_Click);
+			this.CmsOutput_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_全クリア.Image")));
+			this.CmsOutput_全クリア.Name = "CmsOutput_全クリア";
+			this.CmsOutput_全クリア.Size = new System.Drawing.Size(115, 22);
+			this.CmsOutput_全クリア.Text = "全クリア";
+			this.CmsOutput_全クリア.Click += new System.EventHandler(this.CmsOutput_全クリア_Click);
 			// 
 			// CmsOutput_貼り付け
 			// 
@@ -361,10 +361,10 @@
 		private System.Windows.Forms.Label LblResult;
 		private System.Windows.Forms.ToolTip ToolTip1;
 		private System.Windows.Forms.ContextMenuStrip CmsInput;
-		private System.Windows.Forms.ToolStripMenuItem CmsInput_クリア;
+		private System.Windows.Forms.ToolStripMenuItem CmsInput_全クリア;
 		private System.Windows.Forms.ToolStripMenuItem CmsInput_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsOutput;
-		private System.Windows.Forms.ToolStripMenuItem CmsOutput_クリア;
+		private System.Windows.Forms.ToolStripMenuItem CmsOutput_全クリア;
 		private System.Windows.Forms.ToolStripMenuItem CmsOutput_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsDepth;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
