@@ -59,13 +59,14 @@
 			// BtnInput
 			// 
 			this.BtnInput.BackColor = System.Drawing.Color.DimGray;
+			this.BtnInput.FlatAppearance.BorderColor = System.Drawing.Color.Orange;
 			this.BtnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnInput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.BtnInput.ForeColor = System.Drawing.Color.White;
 			this.BtnInput.Location = new System.Drawing.Point(10, 10);
 			this.BtnInput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnInput.Name = "BtnInput";
-			this.BtnInput.Size = new System.Drawing.Size(39, 20);
+			this.BtnInput.Size = new System.Drawing.Size(40, 20);
 			this.BtnInput.TabIndex = 1;
 			this.BtnInput.Text = "入力";
 			this.BtnInput.UseVisualStyleBackColor = false;
@@ -74,13 +75,14 @@
 			// BtnOutput
 			// 
 			this.BtnOutput.BackColor = System.Drawing.Color.DimGray;
+			this.BtnOutput.FlatAppearance.BorderColor = System.Drawing.Color.Red;
 			this.BtnOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnOutput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.BtnOutput.ForeColor = System.Drawing.Color.White;
 			this.BtnOutput.Location = new System.Drawing.Point(10, 68);
 			this.BtnOutput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnOutput.Name = "BtnOutput";
-			this.BtnOutput.Size = new System.Drawing.Size(39, 20);
+			this.BtnOutput.Size = new System.Drawing.Size(40, 20);
 			this.BtnOutput.TabIndex = 4;
 			this.BtnOutput.Text = "出力";
 			this.BtnOutput.UseVisualStyleBackColor = false;
@@ -113,13 +115,13 @@
             this.CmsInput_全クリア,
             this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(181, 70);
+			this.CmsInput.Size = new System.Drawing.Size(116, 48);
 			// 
 			// CmsInput_全クリア
 			// 
 			this.CmsInput_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_全クリア.Image")));
 			this.CmsInput_全クリア.Name = "CmsInput_全クリア";
-			this.CmsInput_全クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_全クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_全クリア.Text = "全クリア";
 			this.CmsInput_全クリア.Click += new System.EventHandler(this.CmsInput_全クリア_Click);
 			// 
@@ -127,7 +129,7 @@
 			// 
 			this.CmsInput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_貼り付け.Image")));
 			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(180, 22);
+			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
 			this.CmsInput_貼り付け.Text = "貼り付け";
 			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
 			// 
@@ -203,7 +205,7 @@
 			// BtnExec
 			// 
 			this.BtnExec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-			this.BtnExec.BackColor = System.Drawing.Color.Firebrick;
+			this.BtnExec.BackColor = System.Drawing.Color.Crimson;
 			this.BtnExec.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnExec.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.BtnExec.ForeColor = System.Drawing.Color.White;

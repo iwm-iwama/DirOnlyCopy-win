@@ -10,7 +10,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210613";
+		private const string VERSION = "フォルダ構成をコピー iwm20210618";
 
 		private readonly int[] DirLevel = { 1, 260 };
 
@@ -22,7 +22,7 @@ namespace iwm_DirOnlyCopy
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			StartPosition = FormStartPosition.Manual;
-			Form1_StartPosition();
+			SubForm1_StartPosition();
 
 			Text = VERSION;
 
@@ -77,7 +77,7 @@ namespace iwm_DirOnlyCopy
 			}
 		}
 
-		private void Form1_StartPosition()
+		private void SubForm1_StartPosition()
 		{
 			int WorkingAreaW = Screen.PrimaryScreen.WorkingArea.Width;
 			int WorkingAreaH = Screen.PrimaryScreen.WorkingArea.Height;
@@ -343,7 +343,7 @@ namespace iwm_DirOnlyCopy
 				// 子
 				foreach (DirectoryInfo DI in dirInfo.EnumerateDirectories("*"))
 				{
-					Application.DoEvents();// 割込を手抜き実装
+					Application.DoEvents(); // 割込を手抜き実装
 
 					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
 					{
