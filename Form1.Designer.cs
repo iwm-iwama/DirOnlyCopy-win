@@ -91,8 +91,8 @@
 			// TbInput
 			// 
 			this.TbInput.AllowDrop = true;
-			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbInput.ContextMenuStrip = this.CmsInput;
@@ -112,8 +112,8 @@
 			// CmsInput
 			// 
 			this.CmsInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsInput_全クリア,
-            this.CmsInput_貼り付け});
+			this.CmsInput_全クリア,
+			this.CmsInput_貼り付け});
 			this.CmsInput.Name = "contextMenuStrip1";
 			this.CmsInput.Size = new System.Drawing.Size(116, 48);
 			// 
@@ -136,8 +136,8 @@
 			// TbOutput
 			// 
 			this.TbOutput.AllowDrop = true;
-			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbOutput.ContextMenuStrip = this.CmsOutput;
@@ -157,8 +157,8 @@
 			// CmsOutput
 			// 
 			this.CmsOutput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsOutput_全クリア,
-            this.CmsOutput_貼り付け});
+			this.CmsOutput_全クリア,
+			this.CmsOutput_貼り付け});
 			this.CmsOutput.Name = "contextMenuStrip1";
 			this.CmsOutput.Size = new System.Drawing.Size(116, 48);
 			// 
@@ -253,8 +253,8 @@
 			// CmsDepth
 			// 
 			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsDepth_上へ,
-            this.CmsDepth_下へ});
+			this.CmsDepth_上へ,
+			this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
 			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
 			// 
