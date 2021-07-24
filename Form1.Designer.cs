@@ -33,13 +33,12 @@
 			this.BtnInput = new System.Windows.Forms.Button();
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.TbInput = new System.Windows.Forms.TextBox();
-			this.CmsInput = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsInput_全クリア = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsInput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.CmsPath_全クリア = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+			this.CmsPath_コピー = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.TbOutput = new System.Windows.Forms.TextBox();
-			this.CmsOutput = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsOutput_全クリア = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsOutput_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
 			this.Lbl1 = new System.Windows.Forms.Label();
 			this.Lbl3 = new System.Windows.Forms.Label();
 			this.BtnExec = new System.Windows.Forms.Button();
@@ -51,8 +50,10 @@
 			this.BtnTest = new System.Windows.Forms.Button();
 			this.LblResult = new System.Windows.Forms.Label();
 			this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.CmsInput.SuspendLayout();
-			this.CmsOutput.SuspendLayout();
+			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+			this.CmsPath_カーソルを先頭に移動 = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_カーソルを末尾に移動 = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath.SuspendLayout();
 			this.CmsDepth.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -63,7 +64,7 @@
 			this.BtnInput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnInput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.BtnInput.ForeColor = System.Drawing.Color.White;
-			this.BtnInput.Location = new System.Drawing.Point(10, 10);
+			this.BtnInput.Location = new System.Drawing.Point(9, 10);
 			this.BtnInput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnInput.Name = "BtnInput";
 			this.BtnInput.Size = new System.Drawing.Size(40, 20);
@@ -79,7 +80,7 @@
 			this.BtnOutput.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.BtnOutput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.BtnOutput.ForeColor = System.Drawing.Color.White;
-			this.BtnOutput.Location = new System.Drawing.Point(10, 68);
+			this.BtnOutput.Location = new System.Drawing.Point(9, 68);
 			this.BtnOutput.Margin = new System.Windows.Forms.Padding(0);
 			this.BtnOutput.Name = "BtnOutput";
 			this.BtnOutput.Size = new System.Drawing.Size(40, 20);
@@ -91,11 +92,11 @@
 			// TbInput
 			// 
 			this.TbInput.AllowDrop = true;
-			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.TbInput.ContextMenuStrip = this.CmsInput;
+			this.TbInput.ContextMenuStrip = this.CmsPath;
 			this.TbInput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.TbInput.ForeColor = System.Drawing.Color.Lime;
 			this.TbInput.Location = new System.Drawing.Point(50, 10);
@@ -107,40 +108,59 @@
 			this.TbInput.TextChanged += new System.EventHandler(this.TbInput_TextChanged);
 			this.TbInput.DragDrop += new System.Windows.Forms.DragEventHandler(this.TbInput_DragDrop);
 			this.TbInput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbInput_DragEnter);
-			this.TbInput.MouseEnter += new System.EventHandler(this.TbInput_MouseEnter);
+			this.TbInput.Enter += new System.EventHandler(this.TbInput_Enter);
+			this.TbInput.MouseHover += new System.EventHandler(this.TbInput_MouseHover);
 			// 
-			// CmsInput
+			// CmsPath
 			// 
-			this.CmsInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.CmsInput_全クリア,
-			this.CmsInput_貼り付け});
-			this.CmsInput.Name = "contextMenuStrip1";
-			this.CmsInput.Size = new System.Drawing.Size(116, 48);
+			this.CmsPath.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CmsPath_全クリア,
+            this.toolStripSeparator1,
+            this.CmsPath_コピー,
+            this.CmsPath_貼り付け,
+            this.toolStripSeparator2,
+            this.CmsPath_カーソルを先頭に移動,
+            this.CmsPath_カーソルを末尾に移動});
+			this.CmsPath.Name = "contextMenuStrip1";
+			this.CmsPath.Size = new System.Drawing.Size(181, 148);
 			// 
-			// CmsInput_全クリア
+			// CmsPath_全クリア
 			// 
-			this.CmsInput_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_全クリア.Image")));
-			this.CmsInput_全クリア.Name = "CmsInput_全クリア";
-			this.CmsInput_全クリア.Size = new System.Drawing.Size(115, 22);
-			this.CmsInput_全クリア.Text = "全クリア";
-			this.CmsInput_全クリア.Click += new System.EventHandler(this.CmsInput_全クリア_Click);
+			this.CmsPath_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_全クリア.Image")));
+			this.CmsPath_全クリア.Name = "CmsPath_全クリア";
+			this.CmsPath_全クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_全クリア.Text = "全クリア";
+			this.CmsPath_全クリア.Click += new System.EventHandler(this.CmsPath_全クリア_Click);
 			// 
-			// CmsInput_貼り付け
+			// toolStripSeparator1
 			// 
-			this.CmsInput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsInput_貼り付け.Image")));
-			this.CmsInput_貼り付け.Name = "CmsInput_貼り付け";
-			this.CmsInput_貼り付け.Size = new System.Drawing.Size(115, 22);
-			this.CmsInput_貼り付け.Text = "貼り付け";
-			this.CmsInput_貼り付け.Click += new System.EventHandler(this.CmsInput_貼り付け_Click);
+			this.toolStripSeparator1.Name = "toolStripSeparator1";
+			this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+			// 
+			// CmsPath_コピー
+			// 
+			this.CmsPath_コピー.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_コピー.Image")));
+			this.CmsPath_コピー.Name = "CmsPath_コピー";
+			this.CmsPath_コピー.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_コピー.Text = "コピー";
+			this.CmsPath_コピー.Click += new System.EventHandler(this.CmsPath_コピー_Click);
+			// 
+			// CmsPath_貼り付け
+			// 
+			this.CmsPath_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_貼り付け.Image")));
+			this.CmsPath_貼り付け.Name = "CmsPath_貼り付け";
+			this.CmsPath_貼り付け.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_貼り付け.Text = "貼り付け";
+			this.CmsPath_貼り付け.Click += new System.EventHandler(this.CmsPath_貼り付け_Click);
 			// 
 			// TbOutput
 			// 
 			this.TbOutput.AllowDrop = true;
-			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-			| System.Windows.Forms.AnchorStyles.Right)));
+			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.TbOutput.ContextMenuStrip = this.CmsOutput;
+			this.TbOutput.ContextMenuStrip = this.CmsPath;
 			this.TbOutput.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.TbOutput.ForeColor = System.Drawing.Color.Lime;
 			this.TbOutput.Location = new System.Drawing.Point(50, 68);
@@ -152,31 +172,8 @@
 			this.TbOutput.TextChanged += new System.EventHandler(this.TbOutput_TextChanged);
 			this.TbOutput.DragDrop += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragDrop);
 			this.TbOutput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragEnter);
-			this.TbOutput.MouseEnter += new System.EventHandler(this.TbOutput_MouseEnter);
-			// 
-			// CmsOutput
-			// 
-			this.CmsOutput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.CmsOutput_全クリア,
-			this.CmsOutput_貼り付け});
-			this.CmsOutput.Name = "contextMenuStrip1";
-			this.CmsOutput.Size = new System.Drawing.Size(116, 48);
-			// 
-			// CmsOutput_全クリア
-			// 
-			this.CmsOutput_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_全クリア.Image")));
-			this.CmsOutput_全クリア.Name = "CmsOutput_全クリア";
-			this.CmsOutput_全クリア.Size = new System.Drawing.Size(115, 22);
-			this.CmsOutput_全クリア.Text = "全クリア";
-			this.CmsOutput_全クリア.Click += new System.EventHandler(this.CmsOutput_全クリア_Click);
-			// 
-			// CmsOutput_貼り付け
-			// 
-			this.CmsOutput_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsOutput_貼り付け.Image")));
-			this.CmsOutput_貼り付け.Name = "CmsOutput_貼り付け";
-			this.CmsOutput_貼り付け.Size = new System.Drawing.Size(115, 22);
-			this.CmsOutput_貼り付け.Text = "貼り付け";
-			this.CmsOutput_貼り付け.Click += new System.EventHandler(this.CmsOutput_貼り付け_Click);
+			this.TbOutput.Enter += new System.EventHandler(this.TbOutput_Enter);
+			this.TbOutput.MouseHover += new System.EventHandler(this.TbOutput_MouseHover);
 			// 
 			// Lbl1
 			// 
@@ -253,8 +250,8 @@
 			// CmsDepth
 			// 
 			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.CmsDepth_上へ,
-			this.CmsDepth_下へ});
+            this.CmsDepth_上へ,
+            this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
 			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
 			// 
@@ -297,10 +294,11 @@
 			this.LblResult.BackColor = System.Drawing.Color.Black;
 			this.LblResult.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.LblResult.ForeColor = System.Drawing.Color.Lime;
-			this.LblResult.Location = new System.Drawing.Point(10, 125);
+			this.LblResult.Location = new System.Drawing.Point(9, 124);
 			this.LblResult.Margin = new System.Windows.Forms.Padding(0);
 			this.LblResult.Name = "LblResult";
-			this.LblResult.Size = new System.Drawing.Size(16, 13);
+			this.LblResult.Padding = new System.Windows.Forms.Padding(1);
+			this.LblResult.Size = new System.Drawing.Size(18, 15);
 			this.LblResult.TabIndex = 0;
 			this.LblResult.Text = "...";
 			// 
@@ -308,6 +306,27 @@
 			// 
 			this.ToolTip1.AutomaticDelay = 1000;
 			this.ToolTip1.BackColor = System.Drawing.Color.Transparent;
+			// 
+			// toolStripSeparator2
+			// 
+			this.toolStripSeparator2.Name = "toolStripSeparator2";
+			this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
+			// 
+			// CmsPath_カーソルを先頭に移動
+			// 
+			this.CmsPath_カーソルを先頭に移動.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_カーソルを先頭に移動.Image")));
+			this.CmsPath_カーソルを先頭に移動.Name = "CmsPath_カーソルを先頭に移動";
+			this.CmsPath_カーソルを先頭に移動.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_カーソルを先頭に移動.Text = "カーソルを先頭に移動";
+			this.CmsPath_カーソルを先頭に移動.Click += new System.EventHandler(this.CmsPath_カーソルを先頭に移動_Click);
+			// 
+			// CmsPath_カーソルを末尾に移動
+			// 
+			this.CmsPath_カーソルを末尾に移動.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_カーソルを末尾に移動.Image")));
+			this.CmsPath_カーソルを末尾に移動.Name = "CmsPath_カーソルを末尾に移動";
+			this.CmsPath_カーソルを末尾に移動.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_カーソルを末尾に移動.Text = "カーソルを末尾に移動";
+			this.CmsPath_カーソルを末尾に移動.Click += new System.EventHandler(this.CmsPath_カーソルを末尾に移動_Click);
 			// 
 			// Form1
 			// 
@@ -328,7 +347,7 @@
 			this.Controls.Add(this.BtnOutput);
 			this.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.MaximizeBox = false;
-			this.MaximumSize = new System.Drawing.Size(640, 190);
+			this.MaximumSize = new System.Drawing.Size(800, 190);
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(320, 190);
 			this.Name = "Form1";
@@ -339,10 +358,8 @@
 			this.TopMost = true;
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
-			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
-			this.CmsInput.ResumeLayout(false);
-			this.CmsOutput.ResumeLayout(false);
+			this.Resize += new System.EventHandler(this.Form1_Resize);
+			this.CmsPath.ResumeLayout(false);
 			this.CmsDepth.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -362,15 +379,17 @@
 		private System.Windows.Forms.Button BtnTest;
 		private System.Windows.Forms.Label LblResult;
 		private System.Windows.Forms.ToolTip ToolTip1;
-		private System.Windows.Forms.ContextMenuStrip CmsInput;
-		private System.Windows.Forms.ToolStripMenuItem CmsInput_全クリア;
-		private System.Windows.Forms.ToolStripMenuItem CmsInput_貼り付け;
-		private System.Windows.Forms.ContextMenuStrip CmsOutput;
-		private System.Windows.Forms.ToolStripMenuItem CmsOutput_全クリア;
-		private System.Windows.Forms.ToolStripMenuItem CmsOutput_貼り付け;
+		private System.Windows.Forms.ContextMenuStrip CmsPath;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_全クリア;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsDepth;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_カーソルを先頭に移動;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_カーソルを末尾に移動;
 	}
 }
 

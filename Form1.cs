@@ -10,9 +10,12 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210618";
+		private const string VERSION = "フォルダ構成をコピー iwm20210724";
 
+		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
+
+		private object CurOBJ = null;
 
 		public Form1()
 		{
@@ -32,11 +35,8 @@ namespace iwm_DirOnlyCopy
 			}
 			CbDepth.Text = DirLevel[0].ToString();
 
-			TbInput.Text = "";
-			TbOutput.Text = "";
-			LblResult.Text = "";
-
-			BtnExec.Enabled = false;
+			TbInput.Text = TbOutput.Text = "";
+			SubBtnExecCtrl();
 
 			CmsDepth_上へ.Text = DirLevel[0].ToString();
 			CmsDepth_下へ.Text = DirLevel[1].ToString();
@@ -54,27 +54,14 @@ namespace iwm_DirOnlyCopy
 			catch
 			{
 			}
-
 			File.Delete(TempFile);
 		}
 
-		private Point MousePoint;
-
-		private void Form1_MouseDown(object sender, MouseEventArgs e)
+		private void Form1_Resize(object sender, EventArgs e)
 		{
-			if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
-			{
-				MousePoint = new Point(e.X, e.Y);
-			}
-		}
-
-		private void Form1_MouseMove(object sender, MouseEventArgs e)
-		{
-			if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
-			{
-				Left += e.X - MousePoint.X;
-				Top += e.Y - MousePoint.Y;
-			}
+			// 表示位置再調整
+			TbInput.SelectionStart = 0;
+			TbOutput.SelectionStart = 0;
 		}
 
 		private void SubForm1_StartPosition()
@@ -117,6 +104,17 @@ namespace iwm_DirOnlyCopy
 			SubBtnExecCtrl();
 		}
 
+		private void TbInput_MouseHover(object sender, EventArgs e)
+		{
+			_ = TbInput.Focus();
+			ToolTip1.SetToolTip(TbInput, RtnPathList(TbInput.Text));
+		}
+
+		private void TbInput_Enter(object sender, EventArgs e)
+		{
+			CurOBJ = TbInput;
+		}
+
 		private void TbInput_TextChanged(object sender, EventArgs e)
 		{
 			SubBtnExecCtrl();
@@ -130,24 +128,6 @@ namespace iwm_DirOnlyCopy
 		private void TbInput_DragDrop(object sender, DragEventArgs e)
 		{
 			SubTextBoxDragEnter(e, TbInput);
-		}
-
-		private void TbInput_MouseEnter(object sender, EventArgs e)
-		{
-			ToolTip1.SetToolTip(TbInput, TbInput.Text);
-		}
-
-		private void CmsInput_全クリア_Click(object sender, EventArgs e)
-		{
-			TbInput.Text = "";
-			_ = TbInput.Focus();
-		}
-
-		private void CmsInput_貼り付け_Click(object sender, EventArgs e)
-		{
-			TbInput.Text = Clipboard.GetText();
-			TbInput.Select(TbInput.Text.Length, 0);
-			_ = TbInput.Focus();
 		}
 
 		private void CmsDepth_上へ_Click(object sender, EventArgs e)
@@ -166,6 +146,17 @@ namespace iwm_DirOnlyCopy
 			SubBtnExecCtrl();
 		}
 
+		private void TbOutput_MouseHover(object sender, EventArgs e)
+		{
+			_ = TbOutput.Focus();
+			ToolTip1.SetToolTip(TbOutput, RtnPathList(TbOutput.Text));
+		}
+
+		private void TbOutput_Enter(object sender, EventArgs e)
+		{
+			CurOBJ = TbOutput;
+		}
+
 		private void TbOutput_TextChanged(object sender, EventArgs e)
 		{
 			SubBtnExecCtrl();
@@ -181,31 +172,11 @@ namespace iwm_DirOnlyCopy
 			SubTextBoxDragEnter(e, TbOutput);
 		}
 
-		private void TbOutput_MouseEnter(object sender, EventArgs e)
-		{
-			ToolTip1.SetToolTip(TbOutput, TbOutput.Text);
-		}
-
-		private void CmsOutput_全クリア_Click(object sender, EventArgs e)
-		{
-			TbOutput.Text = "";
-			_ = TbOutput.Focus();
-		}
-
-		private void CmsOutput_貼り付け_Click(object sender, EventArgs e)
-		{
-			TbOutput.Text = Clipboard.GetText();
-			TbOutput.Select(TbOutput.Text.Length, 0);
-			_ = TbOutput.Focus();
-		}
-
-		private void SubTextBoxDragEnter(
-			DragEventArgs e,
-			TextBox tb
-		)
+		private void SubTextBoxDragEnter(DragEventArgs e, TextBox tb)
 		{
 			string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 			tb.Text = Directory.Exists(fileName[0]) ? fileName[0] : Path.GetDirectoryName(fileName[0]);
+			tb.SelectionStart = tb.TextLength;
 			SubBtnExecCtrl();
 		}
 
@@ -219,13 +190,17 @@ namespace iwm_DirOnlyCopy
 			{
 			}
 
-			TbInput.Text = RtnDirNormalization(TbInput.Text);
-
 			BtnTest.Enabled = false;
 
-			SubBtnExecCount("該当");
+			TbInput.Text = RtnDirNormalization(TbInput.Text, false);
+			TbInput.SelectionStart = TbInput.TextLength;
 
-			if (GblSubDirList.Count > 0)
+			TbOutput.Text = RtnDirNormalization(TbOutput.Text, false);
+			TbOutput.SelectionStart = TbOutput.TextLength;
+
+			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "該当", Color.Orange);
+
+			if (iGblSubDirList > 0)
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
 				{
@@ -234,7 +209,6 @@ namespace iwm_DirOnlyCopy
 						sw.WriteLine(_s1);
 					}
 				}
-
 				// リスト表示
 				P = Process.Start("notepad.exe", TempFile);
 			}
@@ -244,66 +218,131 @@ namespace iwm_DirOnlyCopy
 
 		private void BtnExec_Click(object sender, EventArgs e)
 		{
-			TbInput.Text = RtnDirNormalization(TbInput.Text);
-			TbOutput.Text = RtnDirNormalization(TbOutput.Text);
-
 			BtnExec.Enabled = false;
 
-			SubBtnExecCount("作成");
+			TbInput.Text = RtnDirNormalization(TbInput.Text, false);
+			TbInput.SelectionStart = TbInput.TextLength;
 
-			// basename を取得
-			string basePath = Path.GetFileName(TbInput.Text.TrimEnd('\\'));
-			string copyPath = TbOutput.Text + basePath + @"\";
+			TbOutput.Text = RtnDirNormalization(TbOutput.Text, true);
+			TbOutput.SelectionStart = TbOutput.TextLength;
+
+			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
 
 			// Mkdir
-			_ = Directory.CreateDirectory(copyPath);
-
+			_ = Directory.CreateDirectory(TbOutput.Text);
 			foreach (string _s1 in GblSubDirList)
 			{
-				string s = copyPath + _s1;
-				if (!Directory.Exists(s))
+				--iGblSubDirList;
+
+				string _s2 = TbOutput.Text + _s1;
+				if (!Directory.Exists(_s2))
 				{
-					_ = Directory.CreateDirectory(s);
+					_ = Directory.CreateDirectory(_s2);
+
+					// タイトルに「残り」表示
+					Text = $"残り {iGblSubDirList}";
 				}
 			}
+			// タイトルを戻す
+			Text = VERSION;
 
 			BtnExec.Enabled = true;
 		}
 
-		//------------------
-		// button3 Control
-		//------------------
+		//----------
+		// CmsPath
+		//----------
+		private void CmsPath_全クリア_Click(object sender, EventArgs e)
+		{
+			switch (CurOBJ)
+			{
+				case TextBox tb:
+					tb.Text = "";
+					_ = tb.Focus();
+					break;
+			}
+		}
+
+		private void CmsPath_コピー_Click(object sender, EventArgs e)
+		{
+			switch (CurOBJ)
+			{
+				case TextBox tb:
+					tb.Copy();
+					break;
+			}
+		}
+
+		private void CmsPath_貼り付け_Click(object sender, EventArgs e)
+		{
+			switch (CurOBJ)
+			{
+				case TextBox tb:
+					tb.Paste();
+					break;
+			}
+		}
+
+		private void CmsPath_カーソルを先頭に移動_Click(object sender, EventArgs e)
+		{
+			switch (CurOBJ)
+			{
+				case TextBox tb:
+					tb.SelectionStart = 0;
+					break;
+			}
+		}
+
+		private void CmsPath_カーソルを末尾に移動_Click(object sender, EventArgs e)
+		{
+			switch (CurOBJ)
+			{
+				case TextBox tb:
+					tb.SelectionStart = tb.TextLength;
+					break;
+			}
+		}
+
+		//-------------------------------
+		// [実行]ボタンを使用可否にする
+		//-------------------------------
 		private void SubBtnExecCtrl()
 		{
-			LblResult.Text = "";
+			LblResult.ForeColor = LblResult.BackColor = BackColor;
 			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
 		}
 
-		private void SubBtnExecCount(
-			string s = ""
-		)
+		//---------------------------------
+		// 該当フォルダ数とコメントを表示
+		//---------------------------------
+		private int RtnBtnExecCount(string path, string addText, Color addTextColor)
 		{
 			Cursor = Cursors.WaitCursor;
-
-			LblResult.Text = "処理中...";
+			LblResult.Enabled = false;
 
 			SubDirListInit();
-			SubDirList(TbInput.Text);
+			SubDirList(path);
+			GblSubDirList.Sort();
 
-			LblResult.Text = GblSubDirList.Count + " フォルダ" + s;
+			LblResult.Text = GblSubDirList.Count + " フォルダ" + addText;
+			LblResult.ForeColor = addTextColor;
+			LblResult.BackColor = addText.Length > 0 ? Color.Black : BackColor;
 
+			LblResult.Enabled = true;
 			Cursor = Cursors.Default;
+
+			return GblSubDirList.Count;
 		}
 
 		//------------
 		// Char 検索
 		//------------
-		private int RtnSerchCharCnt(string S, char C)
+		private int RtnSerchCharCnt(string s, char c)
 		{
 			int rtn = 0;
-			foreach (char _c1 in S.ToCharArray())
+			foreach (char _c1 in s.ToCharArray())
 			{
-				if (_c1 == C)
+				if (_c1 == c)
 				{
 					++rtn;
 				}
@@ -328,13 +367,11 @@ namespace iwm_DirOnlyCopy
 		{
 			GblSubDirList.Clear();
 			GblSubDirListBaseLen = TbInput.Text.Length;
-			GblSubDirListLevelMax = RtnStrToInt(CbDepth.Text) + RtnSerchCharCnt(TbInput.Text, '\\') - 1;
+			GblSubDirListLevelMax = int.Parse(CbDepth.Text) + RtnSerchCharCnt(TbInput.Text, '\\') - 1;
 		}
 
 		// 再帰
-		private void SubDirList(
-			string path
-		)
+		private void SubDirList(string path)
 		{
 			try
 			{
@@ -343,17 +380,12 @@ namespace iwm_DirOnlyCopy
 				// 子
 				foreach (DirectoryInfo DI in dirInfo.EnumerateDirectories("*"))
 				{
-					Application.DoEvents(); // 割込を手抜き実装
-
 					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
 					{
 						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
 						SubDirList(DI.FullName);
 					}
 				}
-
-				// ものすごく遅い
-				// GblSubDirList.Sort();
 			}
 			catch
 			{
@@ -363,9 +395,7 @@ namespace iwm_DirOnlyCopy
 		//-----------
 		// Dir 選択
 		//-----------
-		private void SubDirSelect(
-			TextBox tb
-		)
+		private void SubDirSelect(TextBox tb)
 		{
 			FolderBrowserDialog fbd = new FolderBrowserDialog()
 			{
@@ -378,32 +408,41 @@ namespace iwm_DirOnlyCopy
 			if (fbd.ShowDialog(this) == DialogResult.OK)
 			{
 				tb.Text = fbd.SelectedPath;
+				tb.SelectionStart = tb.TextLength;
 				_ = tb.Focus();
-				tb.Select(0, 0);
 			}
 		}
 
 		//--------------------------
 		// Dir の末尾に "\" を付与
 		//--------------------------
-		private string RtnDirNormalization(String path)
+		private string RtnDirNormalization(String path, bool mkdirOn)
 		{
-			return Directory.Exists(path) ? Path.GetFullPath(path).TrimEnd('\\') + @"\" : path;
+			if (path.Length == 0)
+			{
+				return "";
+			}
+
+			// 存在しないDirを作成
+			if (mkdirOn && Directory.Exists(path))
+			{
+				_ = Directory.CreateDirectory(path);
+			}
+
+			return Path.GetFullPath(path).TrimEnd('\\') + @"\";
 		}
 
-		//-----------------------
-		// String を Int に変換
-		//-----------------------
-		private int RtnStrToInt(string S)
+		//---------------------------
+		// Path の "\" を改行に変換
+		//---------------------------
+		private string RtnPathList(string path)
 		{
-			try
+			string rtn = "";
+			foreach (string _s1 in path.Split('\\'))
 			{
-				return int.Parse(S);
+				rtn += _s1 + NL;
 			}
-			catch
-			{
-				return 0;
-			}
+			return rtn;
 		}
 	}
 }

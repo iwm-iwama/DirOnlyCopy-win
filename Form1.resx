@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="CmsInput.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="CmsPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="CmsInput_全クリア.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="CmsPath_全クリア.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
@@ -134,7 +134,18 @@
         XLagMFOf+cp7KRaLaaFQUGDBYP36y4+Sy+UiMPl8/o/HQnwCR3qKj8Tasf4AAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="CmsInput_貼り付け.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="CmsPath_コピー.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
+        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAANJJREFUOE+F0FsK
+        hDAMBdCh4IcgKIIfPtAqCIqi6Aq7g1lCl9glZKJWZgzp9MKh9RoC+jqy77tBQG3bps8BX9Z1BYY+zmVZ
+        /EvmeQaGuu/TNP1fMgwDUOM4Jkghjc/GjvLp+x4Yb/van67rgCGRId2pbdvnJzVNA5SUMuF6pI+zruvv
+        kqqqgHL1SN33siyvJXmeA+Xqi6JIkMK7RtfPzbIMKFdPnQvSNDUIftn+0XHOBa7EcQw+dpRPFEXgY0f5
+        hGEIPnaUTxAE4GNH+QghDAI3YT4LLM3vd5QpCQAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="CmsPath_貼り付け.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
@@ -145,35 +156,28 @@
         NG8OIecCfN9/IvrESgWW+R/vL3HxPE+7MKv2CCEUonmEegErbanOr3DwnwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="CmsOutput.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>230, 17</value>
-  </metadata>
-  <data name="CmsOutput_全クリア.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="CmsPath_カーソルを先頭に移動.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAVpJREFUOE+d0Ilt
-        wjAUBmALBALCYYG4ERQECkfENUFGYASP4BGyQUbICIyQETxCRvAI7v/ap5a7qL/06X++iIT4Tw6Hgzoe
-        j5bw1vvZbrdqt9s59voH1uv1B+Gl2Gw2URAE7sKJj67j+75cLpcxOLAQQcrrL6vVSvH168znc7lYLAy4
-        FzRfv850OpWz2cyABfdEytfvMx6P08lk4tAZWtN8C2cxX//NYDCQw+EwGY1GIfqEdmiD1jRfwr6Fnz9W
-        dLtd2ev1TL/fN+gQrSCGjPc1uEv0QX4uRLvdNiwE2+l0YpA0Q0ZnWGu0I3TOT7/TarWiZrMZgoUEFM3Y
-        l+gzOMhoDx7/gY1GI4WkXq8rtAONOUGHNPOekQg/uY/neftqtepAYzZoC4qda7Xa88eUSqUiYV8qlUy5
-        XLagMFOf+cp7KRaLaaFQUGDBYP36y4+Sy+UiMPl8/o/HQnwCR3qKj8Tasf4AAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAARHRFWHRDb3B5cmlnaHQAQ3Jl
+        YXRpdmUgQ29tbW9ucyBBdHRyaWJ1dGlvbiBOb24tQ29tbWVyY2lhbCBObyBEZXJpdmF0aXZlc3vdsKAA
+        AACYSURBVDhPzdCxCsQgDIBhwcHBoYUOhYIFpQoVFPSJ8qb3aLm0pNDpUKf74RtMIIPiPyulQK0V+dlX
+        SglyznjhUXvneUKMER88bst7DyEEfDuOY+b176y14JzDEcIYA/u+4yixbduH4CixrisQHHX/wbIsQHDE
+        feBqmiYg+DZTvG5Law0EHzzuSykFBC886k9KCWT8QHtCfAEzjYNgl45dYgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="CmsOutput_貼り付け.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="CmsPath_カーソルを末尾に移動.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAOFJREFUOE+Nj+0J
-        gzAQho/8EETBgCAogl8gKIriBI7SETqCmzhKR+goGSG9a1OoNkd84SHhnssrwjnLsmzIA7mb0fXM87wi
-        +ss0TaVRfIZhUOM4ahe0Z54c03Wd7vte4nmnu4Wb8do8OaZtW7u4mqZprAVVVcm6rhX5MzjfzRpAWZZs
-        ATkLO51FUXxK8jxnf4Gche3nvkOapmwBuTNZlklkw/uOKEiShC0g5wLiOGYLyLmAKIrYAnIuIAxDHQSB
-        NG8OIecCfN9/IvrESgWW+R/vL3HxPE+7MKv2CCEUonmEegErbanOr3DwnwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAAARHRFWHRDb3B5cmlnaHQAQ3Jl
+        YXRpdmUgQ29tbW9ucyBBdHRyaWJ1dGlvbiBOb24tQ29tbWVyY2lhbCBObyBEZXJpdmF0aXZlc3vdsKAA
+        AACQSURBVDhP1dExCsMgGAVgIYODgwEHQVBQNKCgEE/SI+SmPdprpCkNHUo1Ux98wz+8t/zkP1Jrxbqu
+        23H2p5SCJuc8NpJSwkuMsW/Eez8vy4KzEMJ7xDmHEdba54gxBqO01htRSuGCO5FS4oIbEUJg0G/fmPdw
+        zvGh75WMMZz0lVsopTj0l1umacJurPw9hDwAl6ODUFhaDA0AAAAASUVORK5CYII=
 </value>
   </data>
   <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>344, 17</value>
+    <value>230, 17</value>
   </metadata>
   <metadata name="CmsDepth.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>121, 17</value>
@@ -199,6 +203,6 @@
 </value>
   </data>
   <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>344, 17</value>
+    <value>230, 17</value>
   </metadata>
 </root>
