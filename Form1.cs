@@ -10,7 +10,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210724";
+		private const string VERSION = "フォルダ構成をコピー iwm20210725";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -190,17 +190,14 @@ namespace iwm_DirOnlyCopy
 			{
 			}
 
+			if (!RtnbBtnTestExec_Click())
+			{
+				return;
+			}
+
 			BtnTest.Enabled = false;
 
-			TbInput.Text = RtnDirNormalization(TbInput.Text, false);
-			TbInput.SelectionStart = TbInput.TextLength;
-
-			TbOutput.Text = RtnDirNormalization(TbOutput.Text, false);
-			TbOutput.SelectionStart = TbOutput.TextLength;
-
-			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "該当", Color.Orange);
-
-			if (iGblSubDirList > 0)
+			if (RtnBtnExecCount(TbInput.Text, "該当", Color.Orange) > 0)
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
 				{
@@ -218,22 +215,15 @@ namespace iwm_DirOnlyCopy
 
 		private void BtnExec_Click(object sender, EventArgs e)
 		{
-			BtnExec.Enabled = false;
-
-			TbInput.Text = RtnDirNormalization(TbInput.Text, false);
-			TbInput.SelectionStart = TbInput.TextLength;
-
-			TbOutput.Text = RtnDirNormalization(TbOutput.Text, true);
-			TbOutput.SelectionStart = TbOutput.TextLength;
-
-			// 出力ドライブ不在のとき
-			if (!Directory.Exists(TbOutput.Text.Substring(0, 2)))
+			if (!RtnbBtnTestExec_Click())
 			{
-				LblResult.Text = $"[Err] 出力ドライブ ({TbOutput.Text.Substring(0, 2).ToUpper()})";
-				LblResult.ForeColor = Color.White;
-				LblResult.BackColor = Color.Crimson;
 				return;
 			}
+
+			BtnExec.Enabled = false;
+
+			// 存在しないDirを作成
+			_ = Directory.CreateDirectory(TbOutput.Text);
 
 			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
 
@@ -254,6 +244,159 @@ namespace iwm_DirOnlyCopy
 			Text = VERSION;
 
 			BtnExec.Enabled = true;
+		}
+
+		//-----------------------------------------------
+		// [テスト][実行]ボタンが押されたときの共通処理
+		//-----------------------------------------------
+		private bool RtnbBtnTestExec_Click()
+		{
+			TbInput.Text = RtnDirNormalization(TbInput.Text);
+			TbInput.SelectionStart = TbInput.TextLength;
+
+			TbOutput.Text = RtnDirNormalization(TbOutput.Text);
+			TbOutput.SelectionStart = TbOutput.TextLength;
+
+			// 出力ドライブ不在のとき
+			if (TbOutput.TextLength >= 2 && !Directory.Exists(TbOutput.Text.Substring(0, 2)))
+			{
+				LblResult.Text = $"[Err] 出力ドライブ ({TbOutput.Text.Substring(0, 2).ToUpper()})";
+				LblResult.ForeColor = Color.White;
+				LblResult.BackColor = Color.Crimson;
+				return false;
+			}
+			return true;
+		}
+
+		//--------------------------
+		// Dir の末尾に "\" を付与
+		//--------------------------
+		private string RtnDirNormalization(String path)
+		{
+			return path.Length > 0 ? Path.GetFullPath(path).TrimEnd('\\') + @"\" : "";
+		}
+
+		//-------------------------------
+		// [実行]ボタンを使用可否にする
+		//-------------------------------
+		private void SubBtnExecCtrl()
+		{
+			LblResult.ForeColor = LblResult.BackColor = BackColor;
+			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
+		}
+
+		//---------------------------------
+		// 該当フォルダ数とコメントを表示
+		//---------------------------------
+		private int RtnBtnExecCount(string path, string addText, Color addTextColor)
+		{
+			Cursor = Cursors.WaitCursor;
+			LblResult.Enabled = false;
+
+			SubDirListInit();
+			SubDirList(path);
+			GblSubDirList.Sort();
+
+			LblResult.Text = GblSubDirList.Count + " フォルダ" + addText;
+			LblResult.ForeColor = addTextColor;
+			LblResult.BackColor = addText.Length > 0 ? Color.Black : BackColor;
+
+			LblResult.Enabled = true;
+			Cursor = Cursors.Default;
+
+			return GblSubDirList.Count;
+		}
+
+		//-----------
+		// Dir 再帰
+		//-----------
+		// Dir リスト
+		private readonly List<string> GblSubDirList = new List<string>();
+
+		// 除外する Dir長
+		private int GblSubDirListBaseLen = 0;
+
+		// Dir 最大深さ
+		private int GblSubDirListLevelMax = 0;
+
+		// 初期化
+		private void SubDirListInit()
+		{
+			GblSubDirList.Clear();
+			GblSubDirListBaseLen = TbInput.Text.Length;
+			GblSubDirListLevelMax = int.Parse(CbDepth.Text) + RtnSerchCharCnt(TbInput.Text, '\\') - 1;
+		}
+
+		// 再帰
+		private void SubDirList(string path)
+		{
+			try
+			{
+				DirectoryInfo dirInfo = new DirectoryInfo(path);
+
+				// 子
+				foreach (DirectoryInfo DI in dirInfo.EnumerateDirectories("*"))
+				{
+					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
+					{
+						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
+						SubDirList(DI.FullName);
+					}
+				}
+			}
+			catch
+			{
+			}
+		}
+
+		//------------
+		// Char 検索
+		//------------
+		private int RtnSerchCharCnt(string s, char c)
+		{
+			int rtn = 0;
+			foreach (char _c1 in s.ToCharArray())
+			{
+				if (_c1 == c)
+				{
+					++rtn;
+				}
+			}
+			return rtn;
+		}
+
+		//-----------
+		// Dir 選択
+		//-----------
+		private void SubDirSelect(TextBox tb)
+		{
+			FolderBrowserDialog fbd = new FolderBrowserDialog()
+			{
+				Description = "フォルダを指定してください。",
+				RootFolder = Environment.SpecialFolder.MyComputer,
+				SelectedPath = tb.Text,
+				ShowNewFolderButton = true
+			};
+
+			if (fbd.ShowDialog(this) == DialogResult.OK)
+			{
+				tb.Text = fbd.SelectedPath;
+				tb.SelectionStart = tb.TextLength;
+				_ = tb.Focus();
+			}
+		}
+
+		//---------------------------
+		// Path の "\" を改行に変換
+		//---------------------------
+		private string RtnPathList(string path)
+		{
+			string rtn = "";
+			foreach (string _s1 in path.Split('\\'))
+			{
+				rtn += _s1 + NL;
+			}
+			return rtn;
 		}
 
 		//----------
@@ -308,148 +451,6 @@ namespace iwm_DirOnlyCopy
 					tb.SelectionStart = tb.TextLength;
 					break;
 			}
-		}
-
-		//-------------------------------
-		// [実行]ボタンを使用可否にする
-		//-------------------------------
-		private void SubBtnExecCtrl()
-		{
-			LblResult.ForeColor = LblResult.BackColor = BackColor;
-			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
-		}
-
-		//---------------------------------
-		// 該当フォルダ数とコメントを表示
-		//---------------------------------
-		private int RtnBtnExecCount(string path, string addText, Color addTextColor)
-		{
-			Cursor = Cursors.WaitCursor;
-			LblResult.Enabled = false;
-
-			SubDirListInit();
-			SubDirList(path);
-			GblSubDirList.Sort();
-
-			LblResult.Text = GblSubDirList.Count + " フォルダ" + addText;
-			LblResult.ForeColor = addTextColor;
-			LblResult.BackColor = addText.Length > 0 ? Color.Black : BackColor;
-
-			LblResult.Enabled = true;
-			Cursor = Cursors.Default;
-
-			return GblSubDirList.Count;
-		}
-
-		//------------
-		// Char 検索
-		//------------
-		private int RtnSerchCharCnt(string s, char c)
-		{
-			int rtn = 0;
-			foreach (char _c1 in s.ToCharArray())
-			{
-				if (_c1 == c)
-				{
-					++rtn;
-				}
-			}
-			return rtn;
-		}
-
-		//-----------
-		// Dir 再帰
-		//-----------
-		// Dir リスト
-		private readonly List<string> GblSubDirList = new List<string>();
-
-		// 除外する Dir長
-		private int GblSubDirListBaseLen = 0;
-
-		// Dir 最大深さ
-		private int GblSubDirListLevelMax = 0;
-
-		// 初期化
-		private void SubDirListInit()
-		{
-			GblSubDirList.Clear();
-			GblSubDirListBaseLen = TbInput.Text.Length;
-			GblSubDirListLevelMax = int.Parse(CbDepth.Text) + RtnSerchCharCnt(TbInput.Text, '\\') - 1;
-		}
-
-		// 再帰
-		private void SubDirList(string path)
-		{
-			try
-			{
-				DirectoryInfo dirInfo = new DirectoryInfo(path);
-
-				// 子
-				foreach (DirectoryInfo DI in dirInfo.EnumerateDirectories("*"))
-				{
-					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
-					{
-						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
-						SubDirList(DI.FullName);
-					}
-				}
-			}
-			catch
-			{
-			}
-		}
-
-		//-----------
-		// Dir 選択
-		//-----------
-		private void SubDirSelect(TextBox tb)
-		{
-			FolderBrowserDialog fbd = new FolderBrowserDialog()
-			{
-				Description = "フォルダを指定してください。",
-				RootFolder = Environment.SpecialFolder.MyComputer,
-				SelectedPath = tb.Text,
-				ShowNewFolderButton = true
-			};
-
-			if (fbd.ShowDialog(this) == DialogResult.OK)
-			{
-				tb.Text = fbd.SelectedPath;
-				tb.SelectionStart = tb.TextLength;
-				_ = tb.Focus();
-			}
-		}
-
-		//--------------------------
-		// Dir の末尾に "\" を付与
-		//--------------------------
-		private string RtnDirNormalization(String path, bool mkdirOn)
-		{
-			if (path.Length == 0)
-			{
-				return "";
-			}
-
-			// 存在しないDirを作成
-			if (mkdirOn && Directory.Exists(path))
-			{
-				_ = Directory.CreateDirectory(path);
-			}
-
-			return Path.GetFullPath(path).TrimEnd('\\') + @"\";
-		}
-
-		//---------------------------
-		// Path の "\" を改行に変換
-		//---------------------------
-		private string RtnPathList(string path)
-		{
-			string rtn = "";
-			foreach (string _s1 in path.Split('\\'))
-			{
-				rtn += _s1 + NL;
-			}
-			return rtn;
 		}
 	}
 }
