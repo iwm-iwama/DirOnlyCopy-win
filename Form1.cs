@@ -226,10 +226,17 @@ namespace iwm_DirOnlyCopy
 			TbOutput.Text = RtnDirNormalization(TbOutput.Text, true);
 			TbOutput.SelectionStart = TbOutput.TextLength;
 
+			// 出力ドライブ不在のとき
+			if (!Directory.Exists(TbOutput.Text.Substring(0, 2)))
+			{
+				LblResult.Text = $"[Err] 出力ドライブ ({TbOutput.Text.Substring(0, 2).ToUpper()})";
+				LblResult.ForeColor = Color.White;
+				LblResult.BackColor = Color.Crimson;
+				return;
+			}
+
 			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
 
-			// Mkdir
-			_ = Directory.CreateDirectory(TbOutput.Text);
 			foreach (string _s1 in GblSubDirList)
 			{
 				--iGblSubDirList;
