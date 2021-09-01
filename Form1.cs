@@ -205,26 +205,11 @@ namespace iwm_DirOnlyCopy
 				{
 					sw.WriteLine($"[{TbInput.Text} 以下 {CbDepth.Text}階層 {iCnt}フォルダ]");
 
-					int _i1 = 0;
-
 					foreach (string _s1 in GblSubDirList)
 					{
-						--iCnt;
-						++_i1;
-
-						// タイトルに「残り」表示
-						if (_i1 >= 100)
-						{
-							_i1 = 0;
-							Text = $"残り {iCnt}";
-							Refresh();
-						}
-
 						sw.WriteLine(_s1);
 					}
 				}
-				// タイトルを戻す
-				Text = VERSION;
 
 				// リスト表示
 				P = Process.Start("notepad.exe", TempFile);
