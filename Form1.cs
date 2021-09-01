@@ -10,7 +10,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210725";
+		private const string VERSION = "フォルダ構成をコピー iwm20210901";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -197,15 +197,35 @@ namespace iwm_DirOnlyCopy
 
 			BtnTest.Enabled = false;
 
-			if (RtnBtnExecCount(TbInput.Text, "該当", Color.Orange) > 0)
+			int iCnt = RtnBtnExecCount(TbInput.Text, "該当", Color.Orange);
+
+			if (iCnt > 0)
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
 				{
+					sw.WriteLine($"[{TbInput.Text} 以下 {CbDepth.Text}階層 {iCnt}フォルダ]");
+
+					int _i1 = 0;
+
 					foreach (string _s1 in GblSubDirList)
 					{
+						--iCnt;
+						++_i1;
+
+						// タイトルに「残り」表示
+						if (_i1 >= 100)
+						{
+							_i1 = 0;
+							Text = $"残り {iCnt}";
+							Refresh();
+						}
+
 						sw.WriteLine(_s1);
 					}
 				}
+				// タイトルを戻す
+				Text = VERSION;
+
 				// リスト表示
 				P = Process.Start("notepad.exe", TempFile);
 			}
@@ -225,11 +245,11 @@ namespace iwm_DirOnlyCopy
 			// 存在しないDirを作成
 			_ = Directory.CreateDirectory(TbOutput.Text);
 
-			int iGblSubDirList = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
+			int iCnt = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
 
 			foreach (string _s1 in GblSubDirList)
 			{
-				--iGblSubDirList;
+				--iCnt;
 
 				string _s2 = TbOutput.Text + _s1;
 				if (!Directory.Exists(_s2))
@@ -237,7 +257,7 @@ namespace iwm_DirOnlyCopy
 					_ = Directory.CreateDirectory(_s2);
 
 					// タイトルに「残り」表示
-					Text = $"残り {iGblSubDirList}";
+					Text = $"残り {iCnt}";
 				}
 			}
 			// タイトルを戻す
@@ -251,6 +271,8 @@ namespace iwm_DirOnlyCopy
 		//-----------------------------------------------
 		private bool RtnbBtnTestExec_Click()
 		{
+			LblResult.Text = "";
+
 			TbInput.Text = RtnDirNormalization(TbInput.Text);
 			TbInput.SelectionStart = TbInput.TextLength;
 
