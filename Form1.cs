@@ -4,13 +4,14 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string VERSION = "フォルダ構成をコピー iwm20210901";
+		private const string ProgramID = "フォルダ構成をコピー iwm20210929";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -27,7 +28,7 @@ namespace iwm_DirOnlyCopy
 			StartPosition = FormStartPosition.Manual;
 			SubForm1_StartPosition();
 
-			Text = VERSION;
+			Text = ProgramID;
 
 			for (int _i1 = DirLevel[0]; _i1 <= DirLevel[1]; _i1++)
 			{
@@ -104,15 +105,20 @@ namespace iwm_DirOnlyCopy
 			SubBtnExecCtrl();
 		}
 
-		private void TbInput_MouseHover(object sender, EventArgs e)
-		{
-			_ = TbInput.Focus();
-			ToolTip1.SetToolTip(TbInput, RtnPathList(TbInput.Text));
-		}
-
 		private void TbInput_Enter(object sender, EventArgs e)
 		{
+			_ = TbInput.Focus();
 			CurOBJ = TbInput;
+			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? RtnPathList(TbInput.Text) : "存在しないフォルダ");
+		}
+
+		private void TbInput_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			// ビープ音抑制
+			if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+			{
+				e.Handled = true;
+			}
 		}
 
 		private void TbInput_TextChanged(object sender, EventArgs e)
@@ -146,15 +152,23 @@ namespace iwm_DirOnlyCopy
 			SubBtnExecCtrl();
 		}
 
-		private void TbOutput_MouseHover(object sender, EventArgs e)
-		{
-			_ = TbOutput.Focus();
-			ToolTip1.SetToolTip(TbOutput, RtnPathList(TbOutput.Text));
-		}
-
 		private void TbOutput_Enter(object sender, EventArgs e)
 		{
+			_ = TbOutput.Focus();
 			CurOBJ = TbOutput;
+			if (Directory.Exists(TbOutput.Text))
+			{
+				ToolTip1.SetToolTip(TbOutput, RtnPathList(TbOutput.Text));
+			}
+		}
+
+		private void TbOutput_KeyPress(object sender, KeyPressEventArgs e)
+		{
+			// ビープ音抑制
+			if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Escape)
+			{
+				e.Handled = true;
+			}
 		}
 
 		private void TbOutput_TextChanged(object sender, EventArgs e)
@@ -190,7 +204,7 @@ namespace iwm_DirOnlyCopy
 			{
 			}
 
-			if (!RtnbBtnTestExec_Click())
+			if (!RtnbBtnTestExecCheck())
 			{
 				return;
 			}
@@ -203,7 +217,7 @@ namespace iwm_DirOnlyCopy
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
 				{
-					sw.WriteLine($"[{TbInput.Text} 以下 {CbDepth.Text}階層 {iCnt}フォルダ]");
+					sw.WriteLine($"[{TbInput.Text}]\n以下 {CbDepth.Text}階層 {iCnt}フォルダ");
 
 					foreach (string _s1 in GblSubDirList)
 					{
@@ -220,14 +234,14 @@ namespace iwm_DirOnlyCopy
 
 		private void BtnExec_Click(object sender, EventArgs e)
 		{
-			if (!RtnbBtnTestExec_Click())
+			if (!RtnbBtnTestExecCheck())
 			{
 				return;
 			}
 
 			BtnExec.Enabled = false;
 
-			// 存在しないDirを作成
+			// 存在しない Dir を作成
 			_ = Directory.CreateDirectory(TbOutput.Text);
 
 			int iCnt = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
@@ -246,7 +260,7 @@ namespace iwm_DirOnlyCopy
 				}
 			}
 			// タイトルを戻す
-			Text = VERSION;
+			Text = ProgramID;
 
 			BtnExec.Enabled = true;
 		}
@@ -254,7 +268,7 @@ namespace iwm_DirOnlyCopy
 		//-----------------------------------------------
 		// [テスト][実行]ボタンが押されたときの共通処理
 		//-----------------------------------------------
-		private bool RtnbBtnTestExec_Click()
+		private bool RtnbBtnTestExecCheck()
 		{
 			LblResult.Text = "";
 
@@ -264,7 +278,25 @@ namespace iwm_DirOnlyCopy
 			TbOutput.Text = RtnDirNormalization(TbOutput.Text);
 			TbOutput.SelectionStart = TbOutput.TextLength;
 
-			// 出力ドライブ不在のとき
+			// 入力 Dir 不在のとき
+			if (!Directory.Exists(TbInput.Text))
+			{
+				Color foreColorCur = TbInput.ForeColor;
+				Color backColorCur = TbInput.BackColor;
+
+				TbInput.ForeColor = Color.White;
+				TbInput.BackColor = Color.Red;
+
+				Refresh();
+				Thread.Sleep(500);
+
+				TbInput.ForeColor = foreColorCur;
+				TbInput.BackColor = backColorCur;
+
+				return false;
+			}
+
+			// 出力 Drive 不在のとき
 			if (TbOutput.TextLength >= 2 && !Directory.Exists(TbOutput.Text.Substring(0, 2)))
 			{
 				LblResult.Text = $"[Err] 出力ドライブ ({TbOutput.Text.Substring(0, 2).ToUpper()})";
@@ -272,12 +304,13 @@ namespace iwm_DirOnlyCopy
 				LblResult.BackColor = Color.Crimson;
 				return false;
 			}
+
 			return true;
 		}
 
-		//--------------------------
-		// Dir の末尾に "\" を付与
-		//--------------------------
+		//------------------------
+		// Dir 末尾に "\" を付与
+		//------------------------
 		private string RtnDirNormalization(String path)
 		{
 			return path.Length > 0 ? Path.GetFullPath(path).TrimEnd('\\') + @"\" : "";
@@ -292,9 +325,9 @@ namespace iwm_DirOnlyCopy
 			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
 		}
 
-		//---------------------------------
-		// 該当フォルダ数とコメントを表示
-		//---------------------------------
+		//------------------------------
+		// 該当 Dir 数とコメントを表示
+		//------------------------------
 		private int RtnBtnExecCount(string path, string addText, Color addTextColor)
 		{
 			Cursor = Cursors.WaitCursor;
@@ -314,10 +347,9 @@ namespace iwm_DirOnlyCopy
 			return GblSubDirList.Count;
 		}
 
-		//-----------
-		// Dir 再帰
-		//-----------
+		//-------------
 		// Dir リスト
+		//-------------
 		private readonly List<string> GblSubDirList = new List<string>();
 
 		// 除外する Dir長
