@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20210929";
+		private const string ProgramID = "フォルダ構成をコピー iwm20211101";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -26,7 +26,7 @@ namespace iwm_DirOnlyCopy
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			StartPosition = FormStartPosition.Manual;
-			SubForm1_StartPosition();
+			SubFormStartPosition();
 
 			Text = ProgramID;
 
@@ -65,7 +65,7 @@ namespace iwm_DirOnlyCopy
 			TbOutput.SelectionStart = 0;
 		}
 
-		private void SubForm1_StartPosition()
+		private void SubFormStartPosition()
 		{
 			int WorkingAreaW = Screen.PrimaryScreen.WorkingArea.Width;
 			int WorkingAreaH = Screen.PrimaryScreen.WorkingArea.Height;
@@ -109,7 +109,7 @@ namespace iwm_DirOnlyCopy
 		{
 			_ = TbInput.Focus();
 			CurOBJ = TbInput;
-			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? RtnPathList(TbInput.Text) : "存在しないフォルダ");
+			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? TbInput.Text.Replace("\\", NL) : "存在しないフォルダ");
 		}
 
 		private void TbInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -158,7 +158,7 @@ namespace iwm_DirOnlyCopy
 			CurOBJ = TbOutput;
 			if (Directory.Exists(TbOutput.Text))
 			{
-				ToolTip1.SetToolTip(TbOutput, RtnPathList(TbOutput.Text));
+				ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
 			}
 		}
 
@@ -272,10 +272,10 @@ namespace iwm_DirOnlyCopy
 		{
 			LblResult.Text = "";
 
-			TbInput.Text = RtnDirNormalization(TbInput.Text);
+			// Dir 整形
+			TbInput.Text = RtnDirNormalization(TbInput.Text.Trim());
 			TbInput.SelectionStart = TbInput.TextLength;
-
-			TbOutput.Text = RtnDirNormalization(TbOutput.Text);
+			TbOutput.Text = RtnDirNormalization(TbOutput.Text.Trim());
 			TbOutput.SelectionStart = TbOutput.TextLength;
 
 			// 入力 Dir 不在のとき
@@ -425,19 +425,6 @@ namespace iwm_DirOnlyCopy
 			}
 		}
 
-		//---------------------------
-		// Path の "\" を改行に変換
-		//---------------------------
-		private string RtnPathList(string path)
-		{
-			string rtn = "";
-			foreach (string _s1 in path.Split('\\'))
-			{
-				rtn += _s1 + NL;
-			}
-			return rtn;
-		}
-
 		//----------
 		// CmsPath
 		//----------
@@ -489,6 +476,20 @@ namespace iwm_DirOnlyCopy
 				case TextBox tb:
 					tb.SelectionStart = tb.TextLength;
 					break;
+			}
+		}
+
+		private static class Program
+		{
+			/// <summary>
+			/// アプリケーションのメイン エントリ ポイントです。
+			/// </summary>
+			[STAThread]
+			private static void Main()
+			{
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(new Form1());
 			}
 		}
 	}
