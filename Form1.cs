@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20211101";
+		private const string ProgramID = "フォルダ構成をコピー iwm20211203";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -428,7 +428,7 @@ namespace iwm_DirOnlyCopy
 		//----------
 		// CmsPath
 		//----------
-		private void CmsPath_全クリア_Click(object sender, EventArgs e)
+		private void CmsPath_クリア_Click(object sender, EventArgs e)
 		{
 			switch (CurOBJ)
 			{

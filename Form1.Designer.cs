@@ -34,7 +34,7 @@
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.TbInput = new System.Windows.Forms.TextBox();
 			this.CmsPath = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsPath_全クリア = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_クリア = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
 			this.CmsPath_コピー = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsPath_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,7 +93,7 @@
 			// 
 			this.TbInput.AllowDrop = true;
 			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbInput.ContextMenuStrip = this.CmsPath;
@@ -115,23 +115,23 @@
 			// CmsPath
 			// 
 			this.CmsPath.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsPath_全クリア,
-            this.toolStripSeparator1,
-            this.CmsPath_コピー,
-            this.CmsPath_貼り付け,
-            this.toolStripSeparator2,
-            this.CmsPath_カーソルを先頭に移動,
-            this.CmsPath_カーソルを末尾に移動});
+			this.CmsPath_クリア,
+			this.toolStripSeparator1,
+			this.CmsPath_コピー,
+			this.CmsPath_貼り付け,
+			this.toolStripSeparator2,
+			this.CmsPath_カーソルを先頭に移動,
+			this.CmsPath_カーソルを末尾に移動});
 			this.CmsPath.Name = "contextMenuStrip1";
 			this.CmsPath.Size = new System.Drawing.Size(177, 126);
 			// 
-			// CmsPath_全クリア
+			// CmsPath_クリア
 			// 
-			this.CmsPath_全クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_全クリア.Image")));
-			this.CmsPath_全クリア.Name = "CmsPath_全クリア";
-			this.CmsPath_全クリア.Size = new System.Drawing.Size(176, 22);
-			this.CmsPath_全クリア.Text = "全クリア";
-			this.CmsPath_全クリア.Click += new System.EventHandler(this.CmsPath_全クリア_Click);
+			this.CmsPath_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_クリア.Image")));
+			this.CmsPath_クリア.Name = "CmsPath_クリア";
+			this.CmsPath_クリア.Size = new System.Drawing.Size(176, 22);
+			this.CmsPath_クリア.Text = "クリア";
+			this.CmsPath_クリア.Click += new System.EventHandler(this.CmsPath_クリア_Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -179,7 +179,7 @@
 			// 
 			this.TbOutput.AllowDrop = true;
 			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbOutput.ContextMenuStrip = this.CmsPath;
@@ -273,8 +273,8 @@
 			// CmsDepth
 			// 
 			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsDepth_上へ,
-            this.CmsDepth_下へ});
+			this.CmsDepth_上へ,
+			this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
 			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
 			// 
@@ -382,7 +382,7 @@
 		private System.Windows.Forms.Label LblResult;
 		private System.Windows.Forms.ToolTip ToolTip1;
 		private System.Windows.Forms.ContextMenuStrip CmsPath;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_全クリア;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
 		private System.Windows.Forms.ContextMenuStrip CmsDepth;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
