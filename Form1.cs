@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20211203";
+		private const string ProgramID = "フォルダ構成をコピー iwm20211210";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -44,13 +44,13 @@ namespace iwm_DirOnlyCopy
 		}
 
 		private readonly string TempFile = Path.Combine(Path.GetTempPath(), Path.GetFileName(Environment.GetCommandLineArgs()[0]) + ".log");
-		private Process P = null;
+		private Process PS = null;
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			try
 			{
-				P.Kill();
+				PS.Kill();
 			}
 			catch
 			{
@@ -99,17 +99,26 @@ namespace iwm_DirOnlyCopy
 			Location = new Point(MouseX, MouseY);
 		}
 
+		private void BtnInput_MouseEnter(object sender, EventArgs e)
+		{
+			TbInput_MouseEnter(sender, e);
+		}
+
 		private void BtnInput_Click(object sender, EventArgs e)
 		{
 			SubDirSelect(TbInput);
 			SubBtnExecCtrl();
 		}
 
-		private void TbInput_Enter(object sender, EventArgs e)
+		private void TbInput_MouseEnter(object sender, EventArgs e)
 		{
 			_ = TbInput.Focus();
-			CurOBJ = TbInput;
 			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? TbInput.Text.Replace("\\", NL) : "存在しないフォルダ");
+		}
+
+		private void TbInput_Enter(object sender, EventArgs e)
+		{
+			CurOBJ = TbInput;
 		}
 
 		private void TbInput_KeyPress(object sender, KeyPressEventArgs e)
@@ -146,20 +155,26 @@ namespace iwm_DirOnlyCopy
 			CbDepth.Text = DirLevel[1].ToString();
 		}
 
+		private void BtnOutput_MouseEnter(object sender, EventArgs e)
+		{
+			TbOutput_MouseEnter(sender, e);
+		}
+
 		private void BtnOutput_Click(object sender, EventArgs e)
 		{
 			SubDirSelect(TbOutput);
 			SubBtnExecCtrl();
 		}
 
-		private void TbOutput_Enter(object sender, EventArgs e)
+		private void TbOutput_MouseEnter(object sender, EventArgs e)
 		{
 			_ = TbOutput.Focus();
+			ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
+		}
+
+		private void TbOutput_Enter(object sender, EventArgs e)
+		{
 			CurOBJ = TbOutput;
-			if (Directory.Exists(TbOutput.Text))
-			{
-				ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
-			}
 		}
 
 		private void TbOutput_KeyPress(object sender, KeyPressEventArgs e)
@@ -198,7 +213,7 @@ namespace iwm_DirOnlyCopy
 		{
 			try
 			{
-				P.Kill();
+				PS.Kill();
 			}
 			catch
 			{
@@ -217,7 +232,7 @@ namespace iwm_DirOnlyCopy
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
 				{
-					sw.WriteLine($"[{TbInput.Text}]\n以下 {CbDepth.Text}階層 {iCnt}フォルダ");
+					sw.WriteLine($"[{TbInput.Text}]\n[{CbDepth.Text}階層 {iCnt}フォルダ]");
 
 					foreach (string _s1 in GblSubDirList)
 					{
@@ -226,7 +241,7 @@ namespace iwm_DirOnlyCopy
 				}
 
 				// リスト表示
-				P = Process.Start("notepad.exe", TempFile);
+				PS = Process.Start("notepad.exe", TempFile);
 			}
 
 			BtnTest.Enabled = true;
@@ -244,7 +259,7 @@ namespace iwm_DirOnlyCopy
 			// 存在しない Dir を作成
 			_ = Directory.CreateDirectory(TbOutput.Text);
 
-			int iCnt = RtnBtnExecCount(TbInput.Text, "作成", Color.Red);
+			int iCnt = RtnBtnExecCount(TbInput.Text, "作成しました", Color.Lime);
 
 			foreach (string _s1 in GblSubDirList)
 			{
@@ -337,7 +352,7 @@ namespace iwm_DirOnlyCopy
 			SubDirList(path);
 			GblSubDirList.Sort();
 
-			LblResult.Text = GblSubDirList.Count + " フォルダ" + addText;
+			LblResult.Text = GblSubDirList.Count + " フォルダ " + addText;
 			LblResult.ForeColor = addTextColor;
 			LblResult.BackColor = addText.Length > 0 ? Color.Black : BackColor;
 
