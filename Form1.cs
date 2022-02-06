@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20211210";
+		private const string ProgramID = "フォルダ構成をコピー iwm20220206";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -67,36 +67,7 @@ namespace iwm_DirOnlyCopy
 
 		private void SubFormStartPosition()
 		{
-			int WorkingAreaW = Screen.PrimaryScreen.WorkingArea.Width;
-			int WorkingAreaH = Screen.PrimaryScreen.WorkingArea.Height;
-
-			int WorkingAreaX = Screen.PrimaryScreen.WorkingArea.X;
-			int WorkingAreaY = Screen.PrimaryScreen.WorkingArea.Y;
-
-			int MouseX = Cursor.Position.X;
-			int MouseY = Cursor.Position.Y;
-
-			// X = Width
-			if (WorkingAreaW < MouseX + Size.Width)
-			{
-				MouseX -= Size.Width;
-				if (MouseX < 0)
-				{
-					MouseX = WorkingAreaX + 10;
-				}
-			}
-
-			// Y = Height
-			if (WorkingAreaH < MouseY + Size.Height)
-			{
-				MouseY -= Size.Height;
-				if (MouseY < 0)
-				{
-					MouseY = WorkingAreaY + 10;
-				}
-			}
-
-			Location = new Point(MouseX, MouseY);
+			Location = new Point(Cursor.Position.X - (Width / 2), Cursor.Position.Y - (SystemInformation.CaptionHeight / 2));
 		}
 
 		private void BtnInput_MouseEnter(object sender, EventArgs e)

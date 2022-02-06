@@ -30,31 +30,33 @@
 		{
 			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+
+			this.BtnExec = new System.Windows.Forms.Button();
 			this.BtnInput = new System.Windows.Forms.Button();
 			this.BtnOutput = new System.Windows.Forms.Button();
-			this.TbInput = new System.Windows.Forms.TextBox();
-			this.CmsPath = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsPath_クリア = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-			this.CmsPath_コピー = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsPath_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-			this.CmsPath_カーソルを先頭に移動 = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsPath_カーソルを末尾に移動 = new System.Windows.Forms.ToolStripMenuItem();
-			this.TbOutput = new System.Windows.Forms.TextBox();
-			this.Lbl1 = new System.Windows.Forms.Label();
-			this.Lbl3 = new System.Windows.Forms.Label();
-			this.BtnExec = new System.Windows.Forms.Button();
-			this.Lbl2 = new System.Windows.Forms.Label();
+			this.BtnTest = new System.Windows.Forms.Button();
 			this.CbDepth = new System.Windows.Forms.ComboBox();
 			this.CmsDepth = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsDepth_上へ = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsDepth_下へ = new System.Windows.Forms.ToolStripMenuItem();
-			this.BtnTest = new System.Windows.Forms.Button();
+			this.CmsDepth_上へ = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.CmsPath_tss01 = new System.Windows.Forms.ToolStripSeparator();
+			this.CmsPath_tss02 = new System.Windows.Forms.ToolStripSeparator();
+			this.CmsPath_カーソルを先頭に移動 = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_カーソルを末尾に移動 = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_クリア = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_コピー = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
+			this.Lbl1 = new System.Windows.Forms.Label();
+			this.Lbl2 = new System.Windows.Forms.Label();
+			this.Lbl3 = new System.Windows.Forms.Label();
 			this.LblResult = new System.Windows.Forms.Label();
+			this.TbInput = new System.Windows.Forms.TextBox();
+			this.TbOutput = new System.Windows.Forms.TextBox();
 			this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.CmsPath.SuspendLayout();
+
 			this.CmsDepth.SuspendLayout();
+			this.CmsPath.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// BtnInput
@@ -122,10 +124,10 @@
 			// 
 			this.CmsPath.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CmsPath_クリア,
-            this.toolStripSeparator1,
+            this.CmsPath_tss01,
             this.CmsPath_コピー,
             this.CmsPath_貼り付け,
-            this.toolStripSeparator2,
+            this.CmsPath_tss02,
             this.CmsPath_カーソルを先頭に移動,
             this.CmsPath_カーソルを末尾に移動});
 			this.CmsPath.Name = "contextMenuStrip1";
@@ -139,10 +141,10 @@
 			this.CmsPath_クリア.Text = "クリア";
 			this.CmsPath_クリア.Click += new System.EventHandler(this.CmsPath_クリア_Click);
 			// 
-			// toolStripSeparator1
+			// CmsPath_tss01
 			// 
-			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
+			this.CmsPath_tss01.Name = "CmsPath_tss01";
+			this.CmsPath_tss01.Size = new System.Drawing.Size(173, 6);
 			// 
 			// CmsPath_コピー
 			// 
@@ -160,10 +162,10 @@
 			this.CmsPath_貼り付け.Text = "貼り付け";
 			this.CmsPath_貼り付け.Click += new System.EventHandler(this.CmsPath_貼り付け_Click);
 			// 
-			// toolStripSeparator2
+			// CmsPath_tss02
 			// 
-			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
+			this.CmsPath_tss02.Name = "CmsPath_tss02";
+			this.CmsPath_tss02.Size = new System.Drawing.Size(173, 6);
 			// 
 			// CmsPath_カーソルを先頭に移動
 			// 
@@ -344,10 +346,6 @@
 			// 
 			// Form1
 			// 
-			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.BackColor = System.Drawing.Color.DimGray;
-			this.ClientSize = new System.Drawing.Size(304, 126);
 			this.Controls.Add(this.LblResult);
 			this.Controls.Add(this.BtnExec);
 			this.Controls.Add(this.BtnTest);
@@ -359,52 +357,58 @@
 			this.Controls.Add(this.Lbl1);
 			this.Controls.Add(this.BtnInput);
 			this.Controls.Add(this.BtnOutput);
+
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.DimGray;
+			this.ClientSize = new System.Drawing.Size(304, 126);
 			this.DoubleBuffered = true;
 			this.Font = new System.Drawing.Font("ＭＳ ゴシック", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+			this.Load += new System.EventHandler(this.Form1_Load);
 			this.MaximizeBox = false;
 			this.MaximumSize = new System.Drawing.Size(800, 165);
 			this.MinimizeBox = false;
 			this.MinimumSize = new System.Drawing.Size(320, 165);
 			this.Name = "Form1";
+			this.Resize += new System.EventHandler(this.Form1_Resize);
 			this.ShowIcon = false;
 			this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Form1";
 			this.TopMost = true;
-			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-			this.Load += new System.EventHandler(this.Form1_Load);
-			this.Resize += new System.EventHandler(this.Form1_Resize);
-			this.CmsPath.ResumeLayout(false);
-			this.CmsDepth.ResumeLayout(false);
-			this.ResumeLayout(false);
-			this.PerformLayout();
 
+			this.CmsDepth.ResumeLayout(false);
+			this.CmsPath.ResumeLayout(false);
+			this.ResumeLayout(false);
+
+			this.PerformLayout();
 		}
 
 		#endregion
+		private System.Windows.Forms.Button BtnExec;
 		private System.Windows.Forms.Button BtnInput;
 		private System.Windows.Forms.Button BtnOutput;
+		private System.Windows.Forms.Button BtnTest;
+		private System.Windows.Forms.ComboBox CbDepth;
+		private System.Windows.Forms.ContextMenuStrip CmsDepth;
+		private System.Windows.Forms.ContextMenuStrip CmsPath;
+		private System.Windows.Forms.Label Lbl1;
+		private System.Windows.Forms.Label Lbl2;
+		private System.Windows.Forms.Label Lbl3;
+		private System.Windows.Forms.Label LblResult;
 		private System.Windows.Forms.TextBox TbInput;
 		private System.Windows.Forms.TextBox TbOutput;
-		private System.Windows.Forms.Label Lbl1;
-		private System.Windows.Forms.Label Lbl3;
-		private System.Windows.Forms.Button BtnExec;
-		private System.Windows.Forms.Label Lbl2;
-		private System.Windows.Forms.ComboBox CbDepth;
-		private System.Windows.Forms.Button BtnTest;
-		private System.Windows.Forms.Label LblResult;
-		private System.Windows.Forms.ToolTip ToolTip1;
-		private System.Windows.Forms.ContextMenuStrip CmsPath;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
-		private System.Windows.Forms.ContextMenuStrip CmsDepth;
-		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
 		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_カーソルを先頭に移動;
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_カーソルを末尾に移動;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
+		private System.Windows.Forms.ToolStripSeparator CmsPath_tss01;
+		private System.Windows.Forms.ToolStripSeparator CmsPath_tss02;
+		private System.Windows.Forms.ToolTip ToolTip1;
 	}
 }
 
