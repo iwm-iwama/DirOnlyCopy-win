@@ -117,10 +117,36 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>230, 17</value>
+  </metadata>
+  <metadata name="CmsDepth.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>121, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="CmsDepth_上へ.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
+        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAKVJREFUOE+VjOEG
+        hEAURhPzY4hWPyImEZPSEPNE86b7aN82fGx703Y7HMM9d27xjxhj2n3nlyM927alXRzUH1nXNYUQIM1z
+        rlwzz3NalgVX5s7VM977NE0T7sx7/PJlHMe0iwf+HhmGAU/l1zN937+cc5DmOVfu6boOUiYdbdtCyqSj
+        aRpImXTUdQ0pk46qqiBl0mGthZRJhzEGUiYdZVlCynSgKD6OwoXW5oxA/AAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="CmsDepth_下へ.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
+        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAKhJREFUOE+Vi0EK
+        g0AQBBdFUBQMgih4MAiCB0HwJXnC/DRP66ykxTBGdiyoy9S0u2JdV/zxyRxmWRZomWzM8wwtk41pmqBl
+        sjGOI7RMNoZhgJbJRt/30DLZ6LoOWqYwTdM82raFdrvz5Uxd17grp1+qqhIvbiicHpRlKV4YPI93iqKQ
+        PM9x5db5ek2WZZKmKbTbnS9hkiQRL360j3eiKBLvO47jF08K5z5g7IDilxPHPQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="CmsPath.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="CmsPath_クリア.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -154,52 +180,6 @@
         +ss0TaVRfIZhUOM4ahe0Z54c03Wd7vte4nmnu4Wb8do8OaZtW7u4mqZprAVVVcm6rhX5MzjfzRpAWZZs
         ATkLO51FUXxK8jxnf4Gche3nvkOapmwBuTNZlklkw/uOKEiShC0g5wLiOGYLyLmAKIrYAnIuIAxDHQSB
         NG8OIecCfN9/IvrESgWW+R/vL3HxPE+7MKv2CCEUonmEegErbanOr3DwnwAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="CmsPath_カーソルを先頭に移動.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAJhJREFUOE/N0LEK
-        xCAMgGHBwcGhhQ6FggWlChUU9InypvdoubSk0OlQp/vhG0wgg+I/K6VArRX52VdKCXLOeOFRe+d5QowR
-        Hzxuy3sPIQR8O45j5vXvrLXgnMMRwhgD+77jKLFt24fgKLGuKxAcdf/BsixAcMR94GqaJiD4NlO8bktr
-        DQQfPO5LKQUELzzqT0oJZPxAe0J8ATONg2CXjl1iAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="CmsPath_カーソルを末尾に移動.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAJBJREFUOE/V0TEK
-        wyAYBWAhg4ODAQdBUFA0oKAQT9Ij5KY92mukKQ0dSjVTH3zDP7y3/OQ/UmvFuq7bcfanlIIm5zw2klLC
-        S4yxb8R7Py/LgrMQwnvEOYcR1trniDEGo7TWG1FK4YI7kVLighsRQmDQb9+Y93DO8aHvlYwxnPSVWyil
-        OPSXW6Zpwm6s/D2EPACXo4NQWFoMDQAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>230, 17</value>
-  </metadata>
-  <metadata name="CmsDepth.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>121, 17</value>
-  </metadata>
-  <data name="CmsDepth_上へ.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAKVJREFUOE+VjOEG
-        hEAURhPzY4hWPyImEZPSEPNE86b7aN82fGx703Y7HMM9d27xjxhj2n3nlyM927alXRzUH1nXNYUQIM1z
-        rlwzz3NalgVX5s7VM977NE0T7sx7/PJlHMe0iwf+HhmGAU/l1zN937+cc5DmOVfu6boOUiYdbdtCyqSj
-        aRpImXTUdQ0pk46qqiBl0mGthZRJhzEGUiYdZVlCynSgKD6OwoXW5oxA/AAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="CmsDepth_下へ.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABEdEVYdENvcHlyaWdodABDcmVhdGl2ZSBDb21tb25z
-        IEF0dHJpYnV0aW9uIE5vbi1Db21tZXJjaWFsIE5vIERlcml2YXRpdmVze92woAAAAKhJREFUOE+Vi0EK
-        g0AQBBdFUBQMgih4MAiCB0HwJXnC/DRP66ykxTBGdiyoy9S0u2JdV/zxyRxmWRZomWzM8wwtk41pmqBl
-        sjGOI7RMNoZhgJbJRt/30DLZ6LoOWqYwTdM82raFdrvz5Uxd17grp1+qqhIvbiicHpRlKV4YPI93iqKQ
-        PM9x5db5ek2WZZKmKbTbnS9hkiQRL360j3eiKBLvO47jF08K5z5g7IDilxPHPQAAAABJRU5ErkJggg==
 </value>
   </data>
 </root>

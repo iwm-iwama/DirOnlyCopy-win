@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20220206";
+		private const string ProgramID = "フォルダ構成をコピー iwm20220408";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -84,7 +84,6 @@ namespace iwm_DirOnlyCopy
 		private void TbInput_MouseEnter(object sender, EventArgs e)
 		{
 			_ = TbInput.Focus();
-			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? TbInput.Text.Replace("\\", NL) : "存在しないフォルダ");
 		}
 
 		private void TbInput_Enter(object sender, EventArgs e)
@@ -104,6 +103,7 @@ namespace iwm_DirOnlyCopy
 		private void TbInput_TextChanged(object sender, EventArgs e)
 		{
 			SubBtnExecCtrl();
+			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? TbInput.Text.Replace("\\", NL) : "存在しないフォルダ");
 		}
 
 		private void TbInput_DragEnter(object sender, DragEventArgs e)
@@ -131,6 +131,11 @@ namespace iwm_DirOnlyCopy
 			TbOutput_MouseEnter(sender, e);
 		}
 
+		private void CbDepth_MouseEnter(object sender, EventArgs e)
+		{
+			_ = CbDepth.Focus();
+		}
+
 		private void BtnOutput_Click(object sender, EventArgs e)
 		{
 			SubDirSelect(TbOutput);
@@ -140,7 +145,6 @@ namespace iwm_DirOnlyCopy
 		private void TbOutput_MouseEnter(object sender, EventArgs e)
 		{
 			_ = TbOutput.Focus();
-			ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
 		}
 
 		private void TbOutput_Enter(object sender, EventArgs e)
@@ -160,6 +164,7 @@ namespace iwm_DirOnlyCopy
 		private void TbOutput_TextChanged(object sender, EventArgs e)
 		{
 			SubBtnExecCtrl();
+			ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
 		}
 
 		private void TbOutput_DragEnter(object sender, DragEventArgs e)
@@ -441,26 +446,6 @@ namespace iwm_DirOnlyCopy
 			{
 				case TextBox tb:
 					tb.Paste();
-					break;
-			}
-		}
-
-		private void CmsPath_カーソルを先頭に移動_Click(object sender, EventArgs e)
-		{
-			switch (CurOBJ)
-			{
-				case TextBox tb:
-					tb.SelectionStart = 0;
-					break;
-			}
-		}
-
-		private void CmsPath_カーソルを末尾に移動_Click(object sender, EventArgs e)
-		{
-			switch (CurOBJ)
-			{
-				case TextBox tb:
-					tb.SelectionStart = tb.TextLength;
 					break;
 			}
 		}
