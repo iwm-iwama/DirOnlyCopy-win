@@ -11,7 +11,7 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20220408";
+		private const string ProgramID = "フォルダ構成をコピー iwm20220413";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };

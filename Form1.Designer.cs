@@ -29,7 +29,6 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.BtnExec = new System.Windows.Forms.Button();
 			this.BtnInput = new System.Windows.Forms.Button();
 			this.BtnOutput = new System.Windows.Forms.Button();
@@ -163,7 +162,6 @@
 			// CmsDepth_上へ
 			// 
 			this.CmsDepth_上へ.ForeColor = System.Drawing.Color.Black;
-			this.CmsDepth_上へ.Image = ((System.Drawing.Image)(resources.GetObject("CmsDepth_上へ.Image")));
 			this.CmsDepth_上へ.Name = "CmsDepth_上へ";
 			this.CmsDepth_上へ.Size = new System.Drawing.Size(67, 22);
 			this.CmsDepth_上へ.Click += new System.EventHandler(this.CmsDepth_上へ_Click);
@@ -171,7 +169,6 @@
 			// CmsDepth_下へ
 			// 
 			this.CmsDepth_下へ.ForeColor = System.Drawing.Color.Black;
-			this.CmsDepth_下へ.Image = ((System.Drawing.Image)(resources.GetObject("CmsDepth_下へ.Image")));
 			this.CmsDepth_下へ.Name = "CmsDepth_下へ";
 			this.CmsDepth_下へ.Size = new System.Drawing.Size(67, 22);
 			this.CmsDepth_下へ.Click += new System.EventHandler(this.CmsDepth_下へ_Click);
@@ -184,34 +181,31 @@
             this.CmsPath_コピー,
             this.CmsPath_貼り付け});
 			this.CmsPath.Name = "contextMenuStrip1";
-			this.CmsPath.Size = new System.Drawing.Size(116, 76);
+			this.CmsPath.Size = new System.Drawing.Size(181, 98);
 			// 
 			// CmsPath_クリア
 			// 
-			this.CmsPath_クリア.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_クリア.Image")));
 			this.CmsPath_クリア.Name = "CmsPath_クリア";
-			this.CmsPath_クリア.Size = new System.Drawing.Size(115, 22);
+			this.CmsPath_クリア.Size = new System.Drawing.Size(180, 22);
 			this.CmsPath_クリア.Text = "クリア";
 			this.CmsPath_クリア.Click += new System.EventHandler(this.CmsPath_クリア_Click);
 			// 
 			// CmsPath_tss01
 			// 
 			this.CmsPath_tss01.Name = "CmsPath_tss01";
-			this.CmsPath_tss01.Size = new System.Drawing.Size(112, 6);
+			this.CmsPath_tss01.Size = new System.Drawing.Size(177, 6);
 			// 
 			// CmsPath_コピー
 			// 
-			this.CmsPath_コピー.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_コピー.Image")));
 			this.CmsPath_コピー.Name = "CmsPath_コピー";
-			this.CmsPath_コピー.Size = new System.Drawing.Size(115, 22);
+			this.CmsPath_コピー.Size = new System.Drawing.Size(180, 22);
 			this.CmsPath_コピー.Text = "コピー";
 			this.CmsPath_コピー.Click += new System.EventHandler(this.CmsPath_コピー_Click);
 			// 
 			// CmsPath_貼り付け
 			// 
-			this.CmsPath_貼り付け.Image = ((System.Drawing.Image)(resources.GetObject("CmsPath_貼り付け.Image")));
 			this.CmsPath_貼り付け.Name = "CmsPath_貼り付け";
-			this.CmsPath_貼り付け.Size = new System.Drawing.Size(115, 22);
+			this.CmsPath_貼り付け.Size = new System.Drawing.Size(180, 22);
 			this.CmsPath_貼り付け.Text = "貼り付け";
 			this.CmsPath_貼り付け.Click += new System.EventHandler(this.CmsPath_貼り付け_Click);
 			// 
