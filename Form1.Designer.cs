@@ -57,6 +57,7 @@
 			// 
 			this.BtnExec.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.BtnExec.BackColor = System.Drawing.Color.Crimson;
+			this.BtnExec.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.BtnExec.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.BtnExec.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Red;
 			this.BtnExec.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
@@ -76,6 +77,7 @@
 			// BtnInput
 			// 
 			this.BtnInput.BackColor = System.Drawing.Color.DimGray;
+			this.BtnInput.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.BtnInput.FlatAppearance.BorderColor = System.Drawing.Color.DarkOrange;
 			this.BtnInput.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkOrange;
 			this.BtnInput.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkOrange;
@@ -95,6 +97,7 @@
 			// BtnOutput
 			// 
 			this.BtnOutput.BackColor = System.Drawing.Color.DimGray;
+			this.BtnOutput.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.BtnOutput.FlatAppearance.BorderColor = System.Drawing.Color.Crimson;
 			this.BtnOutput.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Crimson;
 			this.BtnOutput.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Crimson;
@@ -115,6 +118,7 @@
 			// 
 			this.BtnTest.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
 			this.BtnTest.BackColor = System.Drawing.Color.DarkOrange;
+			this.BtnTest.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.BtnTest.FlatAppearance.BorderColor = System.Drawing.Color.White;
 			this.BtnTest.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Orange;
 			this.BtnTest.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Orange;
@@ -135,6 +139,7 @@
 			// 
 			this.CbDepth.BackColor = System.Drawing.Color.DimGray;
 			this.CbDepth.ContextMenuStrip = this.CmsDepth;
+			this.CbDepth.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.CbDepth.DropDownHeight = 130;
 			this.CbDepth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.CbDepth.DropDownWidth = 50;
@@ -154,8 +159,8 @@
 			// CmsDepth
 			// 
 			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsDepth_上へ,
-            this.CmsDepth_下へ});
+			this.CmsDepth_上へ,
+			this.CmsDepth_下へ});
 			this.CmsDepth.Name = "contextMenuStrip3";
 			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
 			// 
@@ -176,36 +181,36 @@
 			// CmsPath
 			// 
 			this.CmsPath.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.CmsPath_クリア,
-            this.CmsPath_tss01,
-            this.CmsPath_コピー,
-            this.CmsPath_貼り付け});
+			this.CmsPath_クリア,
+			this.CmsPath_tss01,
+			this.CmsPath_コピー,
+			this.CmsPath_貼り付け});
 			this.CmsPath.Name = "contextMenuStrip1";
-			this.CmsPath.Size = new System.Drawing.Size(181, 98);
+			this.CmsPath.Size = new System.Drawing.Size(116, 76);
 			// 
 			// CmsPath_クリア
 			// 
 			this.CmsPath_クリア.Name = "CmsPath_クリア";
-			this.CmsPath_クリア.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_クリア.Size = new System.Drawing.Size(115, 22);
 			this.CmsPath_クリア.Text = "クリア";
 			this.CmsPath_クリア.Click += new System.EventHandler(this.CmsPath_クリア_Click);
 			// 
 			// CmsPath_tss01
 			// 
 			this.CmsPath_tss01.Name = "CmsPath_tss01";
-			this.CmsPath_tss01.Size = new System.Drawing.Size(177, 6);
+			this.CmsPath_tss01.Size = new System.Drawing.Size(112, 6);
 			// 
 			// CmsPath_コピー
 			// 
 			this.CmsPath_コピー.Name = "CmsPath_コピー";
-			this.CmsPath_コピー.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_コピー.Size = new System.Drawing.Size(115, 22);
 			this.CmsPath_コピー.Text = "コピー";
 			this.CmsPath_コピー.Click += new System.EventHandler(this.CmsPath_コピー_Click);
 			// 
 			// CmsPath_貼り付け
 			// 
 			this.CmsPath_貼り付け.Name = "CmsPath_貼り付け";
-			this.CmsPath_貼り付け.Size = new System.Drawing.Size(180, 22);
+			this.CmsPath_貼り付け.Size = new System.Drawing.Size(115, 22);
 			this.CmsPath_貼り付け.Text = "貼り付け";
 			this.CmsPath_貼り付け.Click += new System.EventHandler(this.CmsPath_貼り付け_Click);
 			// 
@@ -262,8 +267,8 @@
 			// TbInput
 			// 
 			this.TbInput.AllowDrop = true;
-			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbInput.ContextMenuStrip = this.CmsPath;
@@ -285,8 +290,8 @@
 			// TbOutput
 			// 
 			this.TbOutput.AllowDrop = true;
-			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbOutput.ContextMenuStrip = this.CmsPath;
@@ -350,25 +355,26 @@
 		}
 
 		#endregion
+
 		private System.Windows.Forms.Button BtnExec;
 		private System.Windows.Forms.Button BtnInput;
 		private System.Windows.Forms.Button BtnOutput;
 		private System.Windows.Forms.Button BtnTest;
 		private System.Windows.Forms.ComboBox CbDepth;
 		private System.Windows.Forms.ContextMenuStrip CmsDepth;
+		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
+		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
 		private System.Windows.Forms.ContextMenuStrip CmsPath;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
+		private System.Windows.Forms.ToolStripSeparator CmsPath_tss01;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
 		private System.Windows.Forms.Label Lbl1;
 		private System.Windows.Forms.Label Lbl2;
 		private System.Windows.Forms.Label Lbl3;
 		private System.Windows.Forms.Label LblResult;
 		private System.Windows.Forms.TextBox TbInput;
 		private System.Windows.Forms.TextBox TbOutput;
-		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
-		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
-		private System.Windows.Forms.ToolStripSeparator CmsPath_tss01;
 		private System.Windows.Forms.ToolTip ToolTip1;
 	}
 }
