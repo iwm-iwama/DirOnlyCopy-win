@@ -11,7 +11,8 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		private const string ProgramID = "フォルダ構成をコピー iwm20230102";
+		///private const string COPYRIGHT = "(C)2021-2023 iwm-iwama";
+		private const string VERSION = "iwm_DirOnlyCopy_20230102";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -28,7 +29,7 @@ namespace iwm_DirOnlyCopy
 			StartPosition = FormStartPosition.Manual;
 			SubFormStartPosition();
 
-			Text = ProgramID;
+			Text = VERSION;
 
 			for (int _i1 = DirLevel[0]; _i1 <= DirLevel[1]; _i1++)
 			{
@@ -251,7 +252,7 @@ namespace iwm_DirOnlyCopy
 				}
 			}
 			// タイトルを戻す
-			Text = ProgramID;
+			Text = VERSION;
 
 			BtnExec.Enabled = true;
 		}
