@@ -12,7 +12,7 @@ namespace iwm_DirOnlyCopy
 	public partial class Form1 : Form
 	{
 		///private const string COPYRIGHT = "(C)2021-2023 iwm-iwama";
-		private const string VERSION = "iwm_DirOnlyCopy_20230102";
+		private const string VERSION = "iwm_DirOnlyCopy_20231228";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
@@ -26,8 +26,9 @@ namespace iwm_DirOnlyCopy
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			StartPosition = FormStartPosition.Manual;
-			SubFormStartPosition();
+			StartPosition = FormStartPosition.CenterScreen;
+			///StartPosition = FormStartPosition.Manual;
+			///Location = new Point(Cursor.Position.X - (Width / 2), Cursor.Position.Y - (SystemInformation.CaptionHeight / 2));
 
 			Text = VERSION;
 
@@ -64,11 +65,6 @@ namespace iwm_DirOnlyCopy
 			// 表示位置再調整
 			TbInput.SelectionStart = 0;
 			TbOutput.SelectionStart = 0;
-		}
-
-		private void SubFormStartPosition()
-		{
-			Location = new Point(Cursor.Position.X - (Width / 2), Cursor.Position.Y - (SystemInformation.CaptionHeight / 2));
 		}
 
 		private void BtnInput_MouseEnter(object sender, EventArgs e)
