@@ -11,11 +11,12 @@ namespace iwm_DirOnlyCopy
 {
 	public partial class Form1 : Form
 	{
-		///private const string COPYRIGHT = "(C)2021-2023 iwm-iwama";
-		private const string VERSION = "iwm_DirOnlyCopy_20231228";
+		///private const string COPYRIGHT = "(C)2018-2024 iwm-iwama";
+		private const string VERSION = "iwm_DirOnlyCopy_20240427";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
+		private const string DirLevelAll = "全";
 
 		private object CurOBJ = null;
 
@@ -32,17 +33,17 @@ namespace iwm_DirOnlyCopy
 
 			Text = VERSION;
 
+			_ = CbDepth.Items.Add(DirLevelAll);
+
 			for (int _i1 = DirLevel[0]; _i1 <= DirLevel[1]; _i1++)
 			{
 				_ = CbDepth.Items.Add(_i1);
 			}
-			CbDepth.Text = DirLevel[0].ToString();
+
+			CbDepth.Text = DirLevelAll;
 
 			TbInput.Text = TbOutput.Text = "";
 			SubBtnExecCtrl();
-
-			CmsDepth_上へ.Text = DirLevel[0].ToString();
-			CmsDepth_下へ.Text = DirLevel[1].ToString();
 		}
 
 		private readonly string TempFile = Path.Combine(Path.GetTempPath(), Path.GetFileName(Environment.GetCommandLineArgs()[0]) + ".log");
@@ -111,16 +112,6 @@ namespace iwm_DirOnlyCopy
 		private void TbInput_DragDrop(object sender, DragEventArgs e)
 		{
 			SubTextBoxDragEnter(e, TbInput);
-		}
-
-		private void CmsDepth_上へ_Click(object sender, EventArgs e)
-		{
-			CbDepth.Text = DirLevel[0].ToString();
-		}
-
-		private void CmsDepth_下へ_Click(object sender, EventArgs e)
-		{
-			CbDepth.Text = DirLevel[1].ToString();
 		}
 
 		private void BtnOutput_MouseEnter(object sender, EventArgs e)
@@ -199,8 +190,9 @@ namespace iwm_DirOnlyCopy
 
 			BtnTest.Enabled = false;
 
-			int iCnt = RtnBtnExecCount(TbInput.Text, "該当", Color.Orange);
+			SubGblSubDirList(TbInput.Text, "該当", Color.Orange);
 
+			int iCnt = GblSubDirList.Count;
 			if (iCnt > 0)
 			{
 				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
@@ -232,23 +224,19 @@ namespace iwm_DirOnlyCopy
 			// 存在しない Dir を作成
 			_ = Directory.CreateDirectory(TbOutput.Text);
 
-			int iCnt = RtnBtnExecCount(TbInput.Text, "作成しました", Color.Lime);
+			SubGblSubDirList(TbInput.Text, "作成中...", Color.Lime);
 
 			foreach (string _s1 in GblSubDirList)
 			{
-				--iCnt;
-
 				string _s2 = TbOutput.Text + _s1;
 				if (!Directory.Exists(_s2))
 				{
 					_ = Directory.CreateDirectory(_s2);
-
-					// タイトルに「残り」表示
-					Text = $"残り {iCnt}";
 				}
 			}
-			// タイトルを戻す
-			Text = VERSION;
+
+			Thread.Sleep(2000);
+			LblResult.Visible = false;
 
 			BtnExec.Enabled = true;
 		}
@@ -309,14 +297,14 @@ namespace iwm_DirOnlyCopy
 		//-------------------------------
 		private void SubBtnExecCtrl()
 		{
-			LblResult.ForeColor = LblResult.BackColor = BackColor;
+			LblResult.Visible = false;
 			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
 		}
 
 		//------------------------------
 		// 該当 Dir 数とコメントを表示
 		//------------------------------
-		private int RtnBtnExecCount(string path, string addText, Color addTextColor)
+		private void SubGblSubDirList(string path, string addText, Color addTextColor)
 		{
 			Cursor = Cursors.WaitCursor;
 			LblResult.Enabled = false;
@@ -325,14 +313,12 @@ namespace iwm_DirOnlyCopy
 			SubDirList(path);
 			GblSubDirList.Sort();
 
+			LblResult.Visible = true;
 			LblResult.Text = GblSubDirList.Count + " フォルダ " + addText;
 			LblResult.ForeColor = addTextColor;
-			LblResult.BackColor = addText.Length > 0 ? Color.Black : BackColor;
 
 			LblResult.Enabled = true;
 			Cursor = Cursors.Default;
-
-			return GblSubDirList.Count;
 		}
 
 		//-------------
@@ -351,7 +337,7 @@ namespace iwm_DirOnlyCopy
 		{
 			GblSubDirList.Clear();
 			GblSubDirListBaseLen = TbInput.Text.Length;
-			GblSubDirListLevelMax = int.Parse(CbDepth.Text) + RtnSerchCharCnt(TbInput.Text, '\\') - 1;
+			GblSubDirListLevelMax = RtnSerchCharCnt(TbInput.Text, '\\') - 1 + (CbDepth.Text == DirLevelAll ? DirLevel[1] : int.Parse(CbDepth.Text));
 		}
 
 		// 再帰

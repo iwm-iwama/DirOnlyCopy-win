@@ -34,9 +34,9 @@
 			this.BtnOutput = new System.Windows.Forms.Button();
 			this.BtnTest = new System.Windows.Forms.Button();
 			this.CbDepth = new System.Windows.Forms.ComboBox();
-			this.CmsDepth = new System.Windows.Forms.ContextMenuStrip(this.components);
-			this.CmsDepth_上へ = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsDepth_下へ = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsNull = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsPath = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.CmsPath_クリア = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsPath_tss01 = new System.Windows.Forms.ToolStripSeparator();
@@ -49,7 +49,7 @@
 			this.TbInput = new System.Windows.Forms.TextBox();
 			this.TbOutput = new System.Windows.Forms.TextBox();
 			this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
-			this.CmsDepth.SuspendLayout();
+			this.CmsNull.SuspendLayout();
 			this.CmsPath.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -138,7 +138,7 @@
 			// CbDepth
 			// 
 			this.CbDepth.BackColor = System.Drawing.Color.DimGray;
-			this.CbDepth.ContextMenuStrip = this.CmsDepth;
+			this.CbDepth.ContextMenuStrip = this.CmsNull;
 			this.CbDepth.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.CbDepth.DropDownHeight = 130;
 			this.CbDepth.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -149,34 +149,32 @@
 			this.CbDepth.FormattingEnabled = true;
 			this.CbDepth.IntegralHeight = false;
 			this.CbDepth.ItemHeight = 12;
-			this.CbDepth.Location = new System.Drawing.Point(113, 29);
+			this.CbDepth.Location = new System.Drawing.Point(75, 29);
 			this.CbDepth.Margin = new System.Windows.Forms.Padding(0);
 			this.CbDepth.Name = "CbDepth";
 			this.CbDepth.Size = new System.Drawing.Size(45, 20);
 			this.CbDepth.TabIndex = 3;
 			this.CbDepth.MouseEnter += new System.EventHandler(this.CbDepth_MouseEnter);
 			// 
-			// CmsDepth
+			// CmsNull
 			// 
-			this.CmsDepth.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.CmsDepth_上へ,
-			this.CmsDepth_下へ});
-			this.CmsDepth.Name = "contextMenuStrip3";
-			this.CmsDepth.Size = new System.Drawing.Size(68, 48);
+			this.CmsNull.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStripMenuItem1,
+			this.toolStripMenuItem2});
+			this.CmsNull.Name = "contextMenuStrip3";
+			this.CmsNull.Size = new System.Drawing.Size(68, 48);
 			// 
-			// CmsDepth_上へ
+			// toolStripMenuItem1
 			// 
-			this.CmsDepth_上へ.ForeColor = System.Drawing.Color.Black;
-			this.CmsDepth_上へ.Name = "CmsDepth_上へ";
-			this.CmsDepth_上へ.Size = new System.Drawing.Size(67, 22);
-			this.CmsDepth_上へ.Click += new System.EventHandler(this.CmsDepth_上へ_Click);
+			this.toolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(67, 22);
 			// 
-			// CmsDepth_下へ
+			// toolStripMenuItem2
 			// 
-			this.CmsDepth_下へ.ForeColor = System.Drawing.Color.Black;
-			this.CmsDepth_下へ.Name = "CmsDepth_下へ";
-			this.CmsDepth_下へ.Size = new System.Drawing.Size(67, 22);
-			this.CmsDepth_下へ.Click += new System.EventHandler(this.CmsDepth_下へ_Click);
+			this.toolStripMenuItem2.ForeColor = System.Drawing.Color.Black;
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(67, 22);
 			// 
 			// CmsPath
 			// 
@@ -222,16 +220,16 @@
 			this.Lbl1.Location = new System.Drawing.Point(21, 33);
 			this.Lbl1.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl1.Name = "Lbl1";
-			this.Lbl1.Size = new System.Drawing.Size(91, 13);
+			this.Lbl1.Size = new System.Drawing.Size(52, 13);
 			this.Lbl1.TabIndex = 0;
-			this.Lbl1.Text = "以下のフォルダ";
+			this.Lbl1.Text = "フォルダ";
 			// 
 			// Lbl2
 			// 
 			this.Lbl2.AutoSize = true;
 			this.Lbl2.Font = new System.Drawing.Font("ＭＳ Ｐゴシック", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.Lbl2.ForeColor = System.Drawing.Color.White;
-			this.Lbl2.Location = new System.Drawing.Point(161, 33);
+			this.Lbl2.Location = new System.Drawing.Point(125, 33);
 			this.Lbl2.Margin = new System.Windows.Forms.Padding(0);
 			this.Lbl2.Name = "Lbl2";
 			this.Lbl2.Size = new System.Drawing.Size(52, 13);
@@ -267,7 +265,7 @@
 			// TbInput
 			// 
 			this.TbInput.AllowDrop = true;
-			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -290,7 +288,7 @@
 			// TbOutput
 			// 
 			this.TbOutput.AllowDrop = true;
-			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
 			| System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -347,7 +345,7 @@
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Resize += new System.EventHandler(this.Form1_Resize);
-			this.CmsDepth.ResumeLayout(false);
+			this.CmsNull.ResumeLayout(false);
 			this.CmsPath.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
@@ -361,9 +359,6 @@
 		private System.Windows.Forms.Button BtnOutput;
 		private System.Windows.Forms.Button BtnTest;
 		private System.Windows.Forms.ComboBox CbDepth;
-		private System.Windows.Forms.ContextMenuStrip CmsDepth;
-		private System.Windows.Forms.ToolStripMenuItem CmsDepth_上へ;
-		private System.Windows.Forms.ToolStripMenuItem CmsDepth_下へ;
 		private System.Windows.Forms.ContextMenuStrip CmsPath;
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
 		private System.Windows.Forms.ToolStripSeparator CmsPath_tss01;
@@ -376,6 +371,9 @@
 		private System.Windows.Forms.TextBox TbInput;
 		private System.Windows.Forms.TextBox TbOutput;
 		private System.Windows.Forms.ToolTip ToolTip1;
+		private System.Windows.Forms.ContextMenuStrip CmsNull;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
 	}
 }
 
