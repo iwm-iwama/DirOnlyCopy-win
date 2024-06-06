@@ -41,7 +41,7 @@
 			this.CmsPath_クリア = new System.Windows.Forms.ToolStripMenuItem();
 			this.CmsPath_tss01 = new System.Windows.Forms.ToolStripSeparator();
 			this.CmsPath_コピー = new System.Windows.Forms.ToolStripMenuItem();
-			this.CmsPath_貼り付け = new System.Windows.Forms.ToolStripMenuItem();
+			this.CmsPath_ペースト = new System.Windows.Forms.ToolStripMenuItem();
 			this.Lbl1 = new System.Windows.Forms.Label();
 			this.Lbl2 = new System.Windows.Forms.Label();
 			this.Lbl3 = new System.Windows.Forms.Label();
@@ -92,7 +92,6 @@
 			this.BtnInput.Text = "入力";
 			this.BtnInput.UseVisualStyleBackColor = false;
 			this.BtnInput.Click += new System.EventHandler(this.BtnInput_Click);
-			this.BtnInput.MouseEnter += new System.EventHandler(this.BtnInput_MouseEnter);
 			// 
 			// BtnOutput
 			// 
@@ -112,7 +111,6 @@
 			this.BtnOutput.Text = "出力";
 			this.BtnOutput.UseVisualStyleBackColor = false;
 			this.BtnOutput.Click += new System.EventHandler(this.BtnOutput_Click);
-			this.BtnOutput.MouseEnter += new System.EventHandler(this.BtnOutput_MouseEnter);
 			// 
 			// BtnTest
 			// 
@@ -154,13 +152,12 @@
 			this.CbDepth.Name = "CbDepth";
 			this.CbDepth.Size = new System.Drawing.Size(45, 20);
 			this.CbDepth.TabIndex = 3;
-			this.CbDepth.MouseEnter += new System.EventHandler(this.CbDepth_MouseEnter);
 			// 
 			// CmsNull
 			// 
 			this.CmsNull.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.toolStripMenuItem1,
-			this.toolStripMenuItem2});
+            this.toolStripMenuItem1,
+            this.toolStripMenuItem2});
 			this.CmsNull.Name = "contextMenuStrip3";
 			this.CmsNull.Size = new System.Drawing.Size(68, 48);
 			// 
@@ -179,38 +176,38 @@
 			// CmsPath
 			// 
 			this.CmsPath.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-			this.CmsPath_クリア,
-			this.CmsPath_tss01,
-			this.CmsPath_コピー,
-			this.CmsPath_貼り付け});
+            this.CmsPath_クリア,
+            this.CmsPath_tss01,
+            this.CmsPath_コピー,
+            this.CmsPath_ペースト});
 			this.CmsPath.Name = "contextMenuStrip1";
-			this.CmsPath.Size = new System.Drawing.Size(116, 76);
+			this.CmsPath.Size = new System.Drawing.Size(110, 76);
 			// 
 			// CmsPath_クリア
 			// 
 			this.CmsPath_クリア.Name = "CmsPath_クリア";
-			this.CmsPath_クリア.Size = new System.Drawing.Size(115, 22);
+			this.CmsPath_クリア.Size = new System.Drawing.Size(109, 22);
 			this.CmsPath_クリア.Text = "クリア";
 			this.CmsPath_クリア.Click += new System.EventHandler(this.CmsPath_クリア_Click);
 			// 
 			// CmsPath_tss01
 			// 
 			this.CmsPath_tss01.Name = "CmsPath_tss01";
-			this.CmsPath_tss01.Size = new System.Drawing.Size(112, 6);
+			this.CmsPath_tss01.Size = new System.Drawing.Size(106, 6);
 			// 
 			// CmsPath_コピー
 			// 
 			this.CmsPath_コピー.Name = "CmsPath_コピー";
-			this.CmsPath_コピー.Size = new System.Drawing.Size(115, 22);
+			this.CmsPath_コピー.Size = new System.Drawing.Size(109, 22);
 			this.CmsPath_コピー.Text = "コピー";
 			this.CmsPath_コピー.Click += new System.EventHandler(this.CmsPath_コピー_Click);
 			// 
-			// CmsPath_貼り付け
+			// CmsPath_ペースト
 			// 
-			this.CmsPath_貼り付け.Name = "CmsPath_貼り付け";
-			this.CmsPath_貼り付け.Size = new System.Drawing.Size(115, 22);
-			this.CmsPath_貼り付け.Text = "貼り付け";
-			this.CmsPath_貼り付け.Click += new System.EventHandler(this.CmsPath_貼り付け_Click);
+			this.CmsPath_ペースト.Name = "CmsPath_ペースト";
+			this.CmsPath_ペースト.Size = new System.Drawing.Size(109, 22);
+			this.CmsPath_ペースト.Text = "ペースト";
+			this.CmsPath_ペースト.Click += new System.EventHandler(this.CmsPath_ペースト_Click);
 			// 
 			// Lbl1
 			// 
@@ -266,7 +263,7 @@
 			// 
 			this.TbInput.AllowDrop = true;
 			this.TbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TbInput.BackColor = System.Drawing.Color.Black;
 			this.TbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbInput.ContextMenuStrip = this.CmsPath;
@@ -283,13 +280,12 @@
 			this.TbInput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbInput_DragEnter);
 			this.TbInput.Enter += new System.EventHandler(this.TbInput_Enter);
 			this.TbInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbInput_KeyPress);
-			this.TbInput.MouseEnter += new System.EventHandler(this.TbInput_MouseEnter);
 			// 
 			// TbOutput
 			// 
 			this.TbOutput.AllowDrop = true;
 			this.TbOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-			| System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Right)));
 			this.TbOutput.BackColor = System.Drawing.Color.Black;
 			this.TbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.TbOutput.ContextMenuStrip = this.CmsPath;
@@ -306,7 +302,6 @@
 			this.TbOutput.DragEnter += new System.Windows.Forms.DragEventHandler(this.TbOutput_DragEnter);
 			this.TbOutput.Enter += new System.EventHandler(this.TbOutput_Enter);
 			this.TbOutput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbOutput_KeyPress);
-			this.TbOutput.MouseEnter += new System.EventHandler(this.TbOutput_MouseEnter);
 			// 
 			// ToolTip1
 			// 
@@ -363,7 +358,7 @@
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_クリア;
 		private System.Windows.Forms.ToolStripSeparator CmsPath_tss01;
 		private System.Windows.Forms.ToolStripMenuItem CmsPath_コピー;
-		private System.Windows.Forms.ToolStripMenuItem CmsPath_貼り付け;
+		private System.Windows.Forms.ToolStripMenuItem CmsPath_ペースト;
 		private System.Windows.Forms.Label Lbl1;
 		private System.Windows.Forms.Label Lbl2;
 		private System.Windows.Forms.Label Lbl3;

@@ -3,22 +3,37 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Text;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
 namespace iwm_DirOnlyCopy
 {
-	public partial class Form1 : Form
+	public partial class Form1: Form
 	{
 		///private const string COPYRIGHT = "(C)2018-2024 iwm-iwama";
-		private const string VERSION = "iwm_DirOnlyCopy_20240427";
+		private const string VERSION = "iwm_DirOnlyCopy_20240605";
 
 		private const string NL = "\r\n";
 		private readonly int[] DirLevel = { 1, 260 };
 		private const string DirLevelAll = "全";
 
 		private object CurOBJ = null;
+
+		[DllImport("user32.dll")]
+		private static extern bool MoveWindow(
+			IntPtr hwnd,
+			int x,
+			int y,
+			int nWidth,
+			int nHeight,
+			int bRepaint
+		);
+
+		private Process GblPS = null;
+
+		private readonly string TempFile = Path.Combine(Path.GetTempPath(), Path.GetFileName(Environment.GetCommandLineArgs()[0]) + ".log");
 
 		public Form1()
 		{
@@ -43,22 +58,26 @@ namespace iwm_DirOnlyCopy
 			CbDepth.Text = DirLevelAll;
 
 			TbInput.Text = TbOutput.Text = "";
-			SubBtnExecCtrl();
+			Sub_BtnExec_Enabled();
 		}
-
-		private readonly string TempFile = Path.Combine(Path.GetTempPath(), Path.GetFileName(Environment.GetCommandLineArgs()[0]) + ".log");
-		private Process PS = null;
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
 			try
 			{
-				PS.Kill();
+				GblPS.Kill();
 			}
 			catch
 			{
 			}
-			File.Delete(TempFile);
+
+			try
+			{
+				File.Delete(TempFile);
+			}
+			catch
+			{
+			}
 		}
 
 		private void Form1_Resize(object sender, EventArgs e)
@@ -68,20 +87,9 @@ namespace iwm_DirOnlyCopy
 			TbOutput.SelectionStart = 0;
 		}
 
-		private void BtnInput_MouseEnter(object sender, EventArgs e)
-		{
-			TbInput_MouseEnter(sender, e);
-		}
-
 		private void BtnInput_Click(object sender, EventArgs e)
 		{
-			SubDirSelect(TbInput);
-			SubBtnExecCtrl();
-		}
-
-		private void TbInput_MouseEnter(object sender, EventArgs e)
-		{
-			_ = TbInput.Focus();
+			Sub_Dir_Select(TbInput);
 		}
 
 		private void TbInput_Enter(object sender, EventArgs e)
@@ -100,7 +108,6 @@ namespace iwm_DirOnlyCopy
 
 		private void TbInput_TextChanged(object sender, EventArgs e)
 		{
-			SubBtnExecCtrl();
 			ToolTip1.SetToolTip(TbInput, Directory.Exists(TbInput.Text) ? TbInput.Text.Replace("\\", NL) : "存在しないフォルダ");
 		}
 
@@ -111,28 +118,12 @@ namespace iwm_DirOnlyCopy
 
 		private void TbInput_DragDrop(object sender, DragEventArgs e)
 		{
-			SubTextBoxDragEnter(e, TbInput);
-		}
-
-		private void BtnOutput_MouseEnter(object sender, EventArgs e)
-		{
-			TbOutput_MouseEnter(sender, e);
-		}
-
-		private void CbDepth_MouseEnter(object sender, EventArgs e)
-		{
-			_ = CbDepth.Focus();
+			Sub_TextBox_DragEnter(e, TbInput);
 		}
 
 		private void BtnOutput_Click(object sender, EventArgs e)
 		{
-			SubDirSelect(TbOutput);
-			SubBtnExecCtrl();
-		}
-
-		private void TbOutput_MouseEnter(object sender, EventArgs e)
-		{
-			_ = TbOutput.Focus();
+			Sub_Dir_Select(TbOutput);
 		}
 
 		private void TbOutput_Enter(object sender, EventArgs e)
@@ -151,8 +142,8 @@ namespace iwm_DirOnlyCopy
 
 		private void TbOutput_TextChanged(object sender, EventArgs e)
 		{
-			SubBtnExecCtrl();
-			ToolTip1.SetToolTip(TbOutput, TbOutput.Text.Replace("\\", NL));
+			Sub_BtnExec_Enabled();
+			ToolTip1.SetToolTip(TbOutput, Directory.Exists(TbOutput.Text) ? TbOutput.Text.Replace("\\", NL) : "存在しないフォルダ");
 		}
 
 		private void TbOutput_DragEnter(object sender, DragEventArgs e)
@@ -162,51 +153,83 @@ namespace iwm_DirOnlyCopy
 
 		private void TbOutput_DragDrop(object sender, DragEventArgs e)
 		{
-			SubTextBoxDragEnter(e, TbOutput);
+			Sub_TextBox_DragEnter(e, TbOutput);
 		}
 
-		private void SubTextBoxDragEnter(DragEventArgs e, TextBox tb)
+		private void Sub_TextBox_DragEnter(DragEventArgs e, TextBox tb)
 		{
 			string[] fileName = (string[])e.Data.GetData(DataFormats.FileDrop, false);
 			tb.Text = Directory.Exists(fileName[0]) ? fileName[0] : Path.GetDirectoryName(fileName[0]);
 			tb.SelectionStart = tb.TextLength;
-			SubBtnExecCtrl();
+		}
+
+		private bool Rtn_Dir_Format()
+		{
+			// Dir 整形
+			TbInput.Text = Rtn_Dir_WithYen(TbInput.Text);
+			TbInput.SelectionStart = TbInput.TextLength;
+			TbOutput.Text = Rtn_Dir_WithYen(TbOutput.Text);
+			TbOutput.SelectionStart = TbOutput.TextLength;
+
+			// 入力 Dir 不在のとき
+			if (!Directory.Exists(TbInput.Text))
+			{
+				Color foreColorCur = TbInput.ForeColor;
+				Color backColorCur = TbInput.BackColor;
+
+				TbInput.ForeColor = Color.White;
+				TbInput.BackColor = Color.Red;
+
+				Refresh();
+				Thread.Sleep(1000);
+
+				TbInput.ForeColor = foreColorCur;
+				TbInput.BackColor = backColorCur;
+
+				return false;
+			}
+
+			return true;
 		}
 
 		private void BtnTest_Click(object sender, EventArgs e)
 		{
 			try
 			{
-				PS.Kill();
+				GblPS.Kill();
 			}
 			catch
 			{
 			}
 
-			if (!RtnbBtnTestExecCheck())
+			if (!Rtn_Dir_Format())
 			{
 				return;
 			}
 
 			BtnTest.Enabled = false;
 
-			SubGblSubDirList(TbInput.Text, "該当", Color.Orange);
+			Sub_GblDirList(TbInput.Text, "該当", Color.Orange);
+			Thread.Sleep(500);
+			LblResult.Visible = false;
 
-			int iCnt = GblSubDirList.Count;
+			int iCnt = GblDirList.Count;
 			if (iCnt > 0)
 			{
-				using (StreamWriter sw = new StreamWriter(TempFile, false, Encoding.GetEncoding("shift_jis")))
+				// UF-8 NoBOM で書込
+				StreamWriter sw = new StreamWriter(TempFile);
+				sw.WriteLine($"[{TbInput.Text}]\n[{CbDepth.Text}階層 {iCnt}フォルダ]");
+				foreach (string _s1 in GblDirList)
 				{
-					sw.WriteLine($"[{TbInput.Text}]\n[{CbDepth.Text}階層 {iCnt}フォルダ]");
-
-					foreach (string _s1 in GblSubDirList)
-					{
-						sw.WriteLine(_s1);
-					}
+					sw.WriteLine(_s1);
 				}
+				sw.Close();
 
-				// リスト表示
-				PS = Process.Start("notepad.exe", TempFile);
+				// リスト表示／using()不可
+				GblPS = Process.Start("notepad.exe", TempFile);
+				_ = MoveWindow(GblPS.MainWindowHandle, 0, 0, 0, 0, 1);
+				_ = GblPS.WaitForInputIdle();
+				_ = MoveWindow(GblPS.MainWindowHandle, 100, 100, (Screen.PrimaryScreen.Bounds.Width / 3), (Screen.PrimaryScreen.Bounds.Height - 200), 1);
 			}
 
 			BtnTest.Enabled = true;
@@ -214,19 +237,16 @@ namespace iwm_DirOnlyCopy
 
 		private void BtnExec_Click(object sender, EventArgs e)
 		{
-			if (!RtnbBtnTestExecCheck())
+			if (!Rtn_Dir_Format())
 			{
 				return;
 			}
 
 			BtnExec.Enabled = false;
 
-			// 存在しない Dir を作成
-			_ = Directory.CreateDirectory(TbOutput.Text);
+			Sub_GblDirList(TbInput.Text, "作成中...", Color.Lime);
 
-			SubGblSubDirList(TbInput.Text, "作成中...", Color.Lime);
-
-			foreach (string _s1 in GblSubDirList)
+			foreach (string _s1 in GblDirList)
 			{
 				string _s2 = TbOutput.Text + _s1;
 				if (!Directory.Exists(_s2))
@@ -241,80 +261,55 @@ namespace iwm_DirOnlyCopy
 			BtnExec.Enabled = true;
 		}
 
-		//-----------------------------------------------
-		// [テスト][実行]ボタンが押されたときの共通処理
-		//-----------------------------------------------
-		private bool RtnbBtnTestExecCheck()
-		{
-			LblResult.Text = "";
-
-			// Dir 整形
-			TbInput.Text = RtnDirNormalization(TbInput.Text.Trim());
-			TbInput.SelectionStart = TbInput.TextLength;
-			TbOutput.Text = RtnDirNormalization(TbOutput.Text.Trim());
-			TbOutput.SelectionStart = TbOutput.TextLength;
-
-			// 入力 Dir 不在のとき
-			if (!Directory.Exists(TbInput.Text))
-			{
-				Color foreColorCur = TbInput.ForeColor;
-				Color backColorCur = TbInput.BackColor;
-
-				TbInput.ForeColor = Color.White;
-				TbInput.BackColor = Color.Red;
-
-				Refresh();
-				Thread.Sleep(500);
-
-				TbInput.ForeColor = foreColorCur;
-				TbInput.BackColor = backColorCur;
-
-				return false;
-			}
-
-			// 出力 Drive 不在のとき
-			if (TbOutput.TextLength >= 2 && !Directory.Exists(TbOutput.Text.Substring(0, 2)))
-			{
-				LblResult.Text = $"[Err] 出力ドライブ ({TbOutput.Text.Substring(0, 2).ToUpper()})";
-				LblResult.ForeColor = Color.White;
-				LblResult.BackColor = Color.Crimson;
-				return false;
-			}
-
-			return true;
-		}
-
 		//------------------------
 		// Dir 末尾に "\" を付与
 		//------------------------
-		private string RtnDirNormalization(String path)
+		private string Rtn_Dir_WithYen(String path)
 		{
-			return path.Length > 0 ? Path.GetFullPath(path).TrimEnd('\\') + @"\" : "";
+			path = path.Trim().TrimEnd('\\');
+
+			if (path.Length == 0)
+			{
+				return "";
+			}
+
+			//【重要】"\" で階層検査
+			// "C:" "D:" 等
+			if (path.Length >= 2 && path.Substring(1, 1) == ":" && Directory.Exists(path))
+			{
+				path += "\\";
+			}
+			else if (Directory.Exists(path))
+			{
+				path += "\\";
+			}
+
+			return path;
 		}
 
 		//-------------------------------
 		// [実行]ボタンを使用可否にする
 		//-------------------------------
-		private void SubBtnExecCtrl()
+		private void Sub_BtnExec_Enabled()
 		{
 			LblResult.Visible = false;
-			BtnExec.Enabled = Directory.Exists(TbInput.Text) && TbOutput.Text.Length > 0;
+			BtnExec.Enabled = Directory.Exists(TbInput.Text) && Directory.Exists(TbOutput.Text);
 		}
 
 		//------------------------------
 		// 該当 Dir 数とコメントを表示
 		//------------------------------
-		private void SubGblSubDirList(string path, string addText, Color addTextColor)
+		private void Sub_GblDirList(string path, string addText, Color addTextColor)
 		{
 			Cursor = Cursors.WaitCursor;
 			LblResult.Enabled = false;
 
-			SubDirListInit();
-			SubDirList(path);
-			GblSubDirList.Sort();
+			Sub_DirList_Init();
+			Sub_DirList(path);
+			GblDirList.Sort();
 
 			LblResult.Visible = true;
-			LblResult.Text = GblSubDirList.Count + " フォルダ " + addText;
+			LblResult.Text = GblDirList.Count + " フォルダ " + addText;
 			LblResult.ForeColor = addTextColor;
 
 			LblResult.Enabled = true;
@@ -324,24 +319,24 @@ namespace iwm_DirOnlyCopy
 		//-------------
 		// Dir リスト
 		//-------------
-		private readonly List<string> GblSubDirList = new List<string>();
+		private readonly List<string> GblDirList = new List<string>();
 
 		// 除外する Dir長
-		private int GblSubDirListBaseLen = 0;
+		private int GblDirListBaseLen = 0;
 
 		// Dir 最大深さ
-		private int GblSubDirListLevelMax = 0;
+		private int GblDirListLevelMax = 0;
 
 		// 初期化
-		private void SubDirListInit()
+		private void Sub_DirList_Init()
 		{
-			GblSubDirList.Clear();
-			GblSubDirListBaseLen = TbInput.Text.Length;
-			GblSubDirListLevelMax = RtnSerchCharCnt(TbInput.Text, '\\') - 1 + (CbDepth.Text == DirLevelAll ? DirLevel[1] : int.Parse(CbDepth.Text));
+			GblDirList.Clear();
+			GblDirListBaseLen = TbInput.Text.Length;
+			GblDirListLevelMax = Rtn_Serch_Char_Cnt(TbInput.Text, '\\') - 1 + (CbDepth.Text == DirLevelAll ? DirLevel[1] : int.Parse(CbDepth.Text));
 		}
 
 		// 再帰
-		private void SubDirList(string path)
+		private void Sub_DirList(string path)
 		{
 			try
 			{
@@ -350,10 +345,10 @@ namespace iwm_DirOnlyCopy
 				// 子
 				foreach (DirectoryInfo DI in dirInfo.EnumerateDirectories("*"))
 				{
-					if (GblSubDirListLevelMax >= RtnSerchCharCnt(DI.FullName, '\\'))
+					if (GblDirListLevelMax >= Rtn_Serch_Char_Cnt(DI.FullName, '\\'))
 					{
-						GblSubDirList.Add(DI.FullName.Substring(GblSubDirListBaseLen));
-						SubDirList(DI.FullName);
+						GblDirList.Add(DI.FullName.Substring(GblDirListBaseLen));
+						Sub_DirList(DI.FullName);
 					}
 				}
 			}
@@ -365,7 +360,7 @@ namespace iwm_DirOnlyCopy
 		//------------
 		// Char 検索
 		//------------
-		private int RtnSerchCharCnt(string s, char c)
+		private int Rtn_Serch_Char_Cnt(string s, char c)
 		{
 			int rtn = 0;
 			foreach (char _c1 in s.ToCharArray())
@@ -381,7 +376,7 @@ namespace iwm_DirOnlyCopy
 		//-----------
 		// Dir 選択
 		//-----------
-		private void SubDirSelect(TextBox tb)
+		private void Sub_Dir_Select(TextBox tb)
 		{
 			FolderBrowserDialog fbd = new FolderBrowserDialog()
 			{
@@ -423,7 +418,7 @@ namespace iwm_DirOnlyCopy
 			}
 		}
 
-		private void CmsPath_貼り付け_Click(object sender, EventArgs e)
+		private void CmsPath_ペースト_Click(object sender, EventArgs e)
 		{
 			switch (CurOBJ)
 			{
@@ -445,6 +440,28 @@ namespace iwm_DirOnlyCopy
 				Application.SetCompatibleTextRenderingDefault(false);
 				Application.Run(new Form1());
 			}
+		}
+
+		//--------------------------------------------------------------------------------
+		// Debug
+		//--------------------------------------------------------------------------------
+		private void D(object obj, [CallerLineNumber] int line = 0)
+		{
+			_ = MessageBox.Show(
+				$"L{line}:\n    {obj}",
+				AppDomain.CurrentDomain.FriendlyName
+			);
+		}
+
+		//--------------------------------------------------------------------------------
+		// MessageBox
+		//--------------------------------------------------------------------------------
+		private void M(object obj)
+		{
+			_ = MessageBox.Show(
+				obj.ToString(),
+				AppDomain.CurrentDomain.FriendlyName
+			);
 		}
 	}
 }
